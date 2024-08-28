@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:HG_Liminal_blank_template-main/HG_Liminal_blank_template-main/Assets/skybox/Skybox.mat.meta
 guid: b16295f4863c59441addc825b85a2dc8
 NativeFormatImporter:
+========
+guid: 012556038115c764e9c35e5441d83f20
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> Stashed changes:HG_Liminal_blank_template-main/HG_Liminal_blank_template-main/Assets/skybox.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 
