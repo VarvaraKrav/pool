@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NeonDrive_LukeGreybox.unity
-    guid: fc9e41b31dce94d47b3984f724ff063a
+    path: Assets/Scenes/NeonDrive.unity
+    guid: 6c8e6078c73545345a6597be640f92aa
   m_configObjects: {}
