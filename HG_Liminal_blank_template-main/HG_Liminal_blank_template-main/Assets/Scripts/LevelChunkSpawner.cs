@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelChunkSpawner : MonoBehaviour
 {
-    public GameObject levelChunkToSpawn; // The LevelChunk to spawn
-    public float spawnRate = 2.0f;        // The rate at which LevelChunks are spawned
-    public float moveSpeed = 5.0f;        // The speed at which the spawned LevelChunks move along the z-axis
-    public Vector3[] preSpawnPositions;  // Array of positions where LevelChunks will be pre-spawned
+    public GameObject[] levelChunksToSpawn; // Array of different LevelChunks to spawn
+    public float spawnRate = 2.0f;          // The rate at which LevelChunks are spawned
+    public float moveSpeed = 5.0f;          // The speed at which the spawned LevelChunks move along the z-axis
+    public Vector3[] preSpawnPositions;     // Array of positions where LevelChunks will be pre-spawned
 
     private float nextSpawnTime;
 
@@ -37,9 +37,13 @@ public class LevelChunkSpawner : MonoBehaviour
 
     void SpawnLevelChunk(Vector3 position)
     {
+        // Randomly select a LevelChunk from the array
+        int randomIndex = Random.Range(0, levelChunksToSpawn.Length);
+        GameObject selectedLevelChunk = levelChunksToSpawn[randomIndex];
+
         // Instantiate the LevelChunk at the given position and spawner's rotation
-        GameObject spawnedLevelChunk = Instantiate(levelChunkToSpawn, position, transform.rotation);
-        
+        GameObject spawnedLevelChunk = Instantiate(selectedLevelChunk, position, transform.rotation);
+
         // Start moving the spawned LevelChunk
         spawnedLevelChunk.AddComponent<LevelChunkMover>().moveSpeed = moveSpeed;
     }
