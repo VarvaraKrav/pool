@@ -18,6 +18,6 @@ public class MPHDisplay : MonoBehaviour
     void UpdateMPH()
     {
         int mphValue = Random.Range(28, 32); // Random.Range is exclusive of the upper bound
-        mphText.text = mphValue.ToString();
+        mphText.text = "0" + mphValue.ToString();
     }
 }
