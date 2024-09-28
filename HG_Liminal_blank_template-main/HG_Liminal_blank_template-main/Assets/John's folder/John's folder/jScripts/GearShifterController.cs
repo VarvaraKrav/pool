@@ -21,12 +21,21 @@ public class GearShifterController : MonoBehaviour
     public Vector3 drivePosition; // Position when in Drive
     public Vector3 sportPosition; // Position when in Sport
     public float moveSpeed = 2.0f; // Speed at which the object moves
+    public TMP_Text mphText; // Assign this in the inspector
 
     public float raycastDistance = 10f;
 
     private bool isSelected = false; // To check if the user has clicked on the gear shifter
     private bool isPointing = false; // To check if the user is pointing at the gear shifter
     private string currentGear = "P"; // Track current gear state
+
+    private void Start()
+    {
+        if (mphText == null)
+        {
+            mphText = GetComponent<TMP_Text>();
+        }
+    }
 
     private void Update()
     {
@@ -70,13 +79,30 @@ public class GearShifterController : MonoBehaviour
                 StartCoroutine(MoveGearShifter(dPositionLocal, sPositionLocal));
                 currentGear = "S";
                 RPMSlider();
+                UpdateRPMDigit();
                 break;
             case "S":
                 StartCoroutine(MoveGearShifter(sPositionLocal, dPositionLocal));
                 currentGear = "D";
                 RPMSlider();
+                UpdateRPMDigit();
                 break;
         }
+    }
+
+    void UpdateRPMDigit()
+    {
+        if (currentGear == "D")
+        {
+            int rpmValue = 2;
+            mphText.text = rpmValue.ToString();
+        }
+        else
+        {
+            int rpmValue = 3;
+            mphText.text = rpmValue.ToString();
+        }
+        
     }
 
     // Coroutine to smoothly move the gear shifter between local positions
