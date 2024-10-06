@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.24528301, g: 0.0497508, b: 0.16200072, a: 1}
-  m_FogMode: 1
-  m_FogDensity: 0.005
+  m_FogColor: {r: 0.0627451, g: 0.050980397, b: 0.24705884, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.13207549, g: 0.03800285, b: 0.09494151, a: 1}
+  m_AmbientSkyColor: {r: 0.045167312, g: 0.045328006, b: 0.047169805, a: 1}
   m_AmbientEquatorColor: {r: 0.18867922, g: 0.13438945, b: 0.14981978, a: 1}
   m_AmbientGroundColor: {r: 0.8584906, g: 0.68436277, b: 0.7541015, a: 1}
   m_AmbientIntensity: 1
@@ -519,11 +519,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Use either controller to steer. Press and hold the primary or secondary
-    trigger while moving the wheel. Release the trigger to reset the wheel.
-
-
-'
+  m_text: An endless city of glowing highways and shimmering lights.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -592,12 +588,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 64695311}
-    characterCount: 145
+    characterCount: 58
     spriteCount: 0
-    spaceCount: 25
-    wordCount: 24
+    spaceCount: 8
+    wordCount: 9
     linkCount: 0
-    lineCount: 3
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1533,6 +1529,41 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 384803004522746002, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_Name
+      value: Car Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004772689361, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004522746000, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004522746000, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004522746000, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.91764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035369782196600733, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f0b2a5d630d962498f9cd9f257b24b5, type: 2}
+    - target: {fileID: 6790562705555075147, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0a81a82d6032f14495a5a598519dd77, type: 3}
 --- !u!1 &225185122
@@ -2314,8 +2345,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: To switch music, point your controller at the audio switch button and press
-    the trigger. Explore different tracks to set the perfect mood for your drive.
+  m_text: Soon, this tunnel will fade, revealing the Neon World ahead.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2384,12 +2414,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 375234027}
-    characterCount: 153
+    characterCount: 60
     spriteCount: 0
-    spaceCount: 25
-    wordCount: 26
+    spaceCount: 9
+    wordCount: 10
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2796,7 +2826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.00002}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.09, y: 2.43252}
+  m_AnchoredPosition: {x: 1.93, y: 2.43252}
   m_SizeDelta: {x: 1906, y: 1034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431545616
@@ -3121,7 +3151,7 @@ Transform:
   - {fileID: 875614685}
   - {fileID: 431545615}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541507638
 GameObject:
@@ -4051,8 +4081,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "In this VR experience, you\u2019ll be driving down a highway into the sunset
-    with synthwave music playing."
+  m_text: The lights pulse with the rhythm of the neon universe, guiding your way
+    forward.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4121,12 +4151,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 790672897}
-    characterCount: 101
+    characterCount: 80
     spriteCount: 0
-    spaceCount: 16
-    wordCount: 17
+    spaceCount: 13
+    wordCount: 14
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4613,6 +4643,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 27300405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1129298332
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5489761639333067856, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelChunk_Tunnel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067856, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a275f0e7f46faf478ecec5288128db7, type: 3}
 --- !u!1001 &1165171334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4824,7 +4928,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Enjoy your drive into the sunset, and let the music guide your journey.
+  m_text: Get ready. The transition is coming. Hold tight as the neon universe unfolds
+    before you.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4893,10 +4998,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1193844466}
-    characterCount: 71
+    characterCount: 88
     spriteCount: 0
-    spaceCount: 12
-    wordCount: 13
+    spaceCount: 14
+    wordCount: 15
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -5525,7 +5630,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Welcome to Neon Drive!
+  m_text: Welcome to the Neon Tunnel, your gateway between worlds.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5594,10 +5699,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1292092663}
-    characterCount: 22
+    characterCount: 56
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 8
+    wordCount: 9
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -8508,18 +8613,18 @@ MonoBehaviour:
   - {fileID: 64695311}
   - {fileID: 1193844466}
   audioClips:
-  - {fileID: 8300000, guid: 646a3ffff0175f14aa28ef15cd216fa0, type: 3}
-  - {fileID: 8300000, guid: 02b53733ca542c5439e3986ed3286cf1, type: 3}
-  - {fileID: 8300000, guid: 96fac0966d378d24198a4a5a3015b517, type: 3}
-  - {fileID: 8300000, guid: 03c06a1551a65ec4ea06cf838699cffd, type: 3}
-  - {fileID: 8300000, guid: f524071fcd7c1724a912bce01523be14, type: 3}
+  - {fileID: 8300000, guid: 7a1c4fad2ffd9fc419427897cdd82339, type: 3}
+  - {fileID: 8300000, guid: ae6cd7f11d1225946874a357223b355e, type: 3}
+  - {fileID: 8300000, guid: 9947acb09922b5141a0ceb8c2222dcae, type: 3}
+  - {fileID: 8300000, guid: cd5f95cadfb0ebc4ba91258abd7c1c1e, type: 3}
+  - {fileID: 8300000, guid: 074507447e5a3d544b78c029d542f612, type: 3}
   audioSource: {fileID: 2036831522}
   displayDurations:
-  - 2
-  - 6
-  - 9
-  - 10
   - 4
+  - 4
+  - 4
+  - 4
+  - 7
 --- !u!4 &2036831524
 Transform:
   m_ObjectHideFlags: 0
@@ -8790,100 +8895,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68835618cfefd13418d5d200efc8146d, type: 3}
---- !u!1001 &4016793128514875623
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5489761639333067856, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelChunk_Tunnel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067856, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489761639333067855, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 966118855607567784, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586655203601407137, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586655203601407137, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586655203601407137, guid: 8a275f0e7f46faf478ecec5288128db7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.43
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8a275f0e7f46faf478ecec5288128db7, type: 3}
 --- !u!33 &4044710142323681317
 MeshFilter:
   m_ObjectHideFlags: 0

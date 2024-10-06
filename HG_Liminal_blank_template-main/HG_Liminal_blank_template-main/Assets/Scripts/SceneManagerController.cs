@@ -6,10 +6,18 @@ using UnityEngine.UI;
 public class SceneManagerController : MonoBehaviour
 {
     [System.Serializable]
+    public class PointLightSettings
+    {
+        public Color lightColor = Color.white; // Default light color
+        public float intensity = 1f; // Default light intensity
+    }
+
+    [System.Serializable]
     public class SceneInfo
     {
         public string sceneName; // Name of the scene to load
         public float timeDuration; // Time duration for this specific scene
+        public PointLightSettings pointLightSettings; // Light settings for the car's light
     }
 
     public static SceneManagerController Instance { get; private set; } // Singleton instance
@@ -26,6 +34,9 @@ public class SceneManagerController : MonoBehaviour
     private GameObject currentPortalFX; // Keep a reference to the current portal FX instance
 
     private int currentSceneIndex = 0;
+
+    // New references for the car's point light
+    public Light carPointLight; // Assign the car's point light here in the Inspector or via code
 
     private void Awake()
     {
@@ -119,9 +130,19 @@ public class SceneManagerController : MonoBehaviour
         {
             SceneInfo sceneInfo = scenesToLoad[currentSceneIndex];
 
+            // Set the point light intensity and color for the current scene
+            if (carPointLight != null)
+            {
+                carPointLight.color = sceneInfo.pointLightSettings.lightColor;
+                carPointLight.intensity = sceneInfo.pointLightSettings.intensity;
+            }
+
             // Start scene fade and wait for the scene's specific duration
             yield return StartCoroutine(FadeAndLoadScene(sceneInfo.sceneName));
             Debug.Log($"Scene '{sceneInfo.sceneName}' duration: {sceneInfo.timeDuration} seconds");
+
+
+
 
             // Wait for the duration of the scene
             yield return new WaitForSeconds(sceneInfo.timeDuration);
