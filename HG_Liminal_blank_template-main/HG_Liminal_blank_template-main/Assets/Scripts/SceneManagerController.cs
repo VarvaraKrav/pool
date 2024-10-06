@@ -11,8 +11,8 @@ public class SceneManagerController : MonoBehaviour
         public string sceneName; // Name of the scene to load
         public float timeDuration; // Time duration for this specific scene
     }
-    public static SceneManagerController Instance { get; private set; } // Singleton instance
 
+    public static SceneManagerController Instance { get; private set; } // Singleton instance
     public Image fadeImage; // UI Image for fade effect
     public float fadeDuration = 1f; // Duration of the fade effect
     public SceneInfo[] scenesToLoad; // Array to hold scenes and their time durations
@@ -23,6 +23,7 @@ public class SceneManagerController : MonoBehaviour
     public float initialSceneDuration = 3f; // Time duration for the initial scene before transition
 
     public GameObject portalFXPrefab; // Reference to the portal FX prefab
+    private GameObject currentPortalFX; // Keep a reference to the current portal FX instance
 
     private int currentSceneIndex = 0;
 
@@ -43,10 +44,6 @@ public class SceneManagerController : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(audioSwitchController);
-        DontDestroyOnLoad(experienceAppPlayer);
-        DontDestroyOnLoad(gameObject); // Ensure this manager persists across scenes
-
         StartCoroutine(InitialSceneWait());
     }
 
@@ -60,8 +57,9 @@ public class SceneManagerController : MonoBehaviour
     {
         if (portalFXPrefab != null)
         {
-            GameObject portalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
-            Animator portalAnimator = portalFX.GetComponent<Animator>();
+            currentPortalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
+            currentPortalFX.transform.SetParent(experienceAppPlayer.transform); // Make portal a child of ExperienceAppPlayer
+            Animator portalAnimator = currentPortalFX.GetComponent<Animator>();
 
             if (portalAnimator != null)
             {
@@ -85,8 +83,9 @@ public class SceneManagerController : MonoBehaviour
     {
         if (portalFXPrefab != null)
         {
-            GameObject portalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
-            Animator portalAnimator = portalFX.GetComponent<Animator>();
+            currentPortalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
+            currentPortalFX.transform.SetParent(experienceAppPlayer.transform); // Make portal a child of ExperienceAppPlayer
+            Animator portalAnimator = currentPortalFX.GetComponent<Animator>();
 
             if (portalAnimator != null)
             {
@@ -102,9 +101,7 @@ public class SceneManagerController : MonoBehaviour
         {
             Debug.LogError("Portal FX Prefab is not assigned.");
         }
-
     }
-
 
     private IEnumerator WaitForPortalAnimation(Animator animator)
     {
@@ -114,6 +111,7 @@ public class SceneManagerController : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator LoadSceneSequence()
     {
         // Start loading scenes only if currentSceneIndex is less than the number of scenes
@@ -136,6 +134,10 @@ public class SceneManagerController : MonoBehaviour
                 StartCoroutine(FadeOutAndQuit()); // Quit after fade-out
                 yield break; // End the coroutine since it's the final scene
             }
+
+            // Destroy the current portal FX instance before moving to the next scene
+            Destroy(currentPortalFX);
+
             yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
 
             currentSceneIndex++; // Move to the next scene
@@ -196,4 +198,3 @@ public class SceneManagerController : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
     }
 }
-
