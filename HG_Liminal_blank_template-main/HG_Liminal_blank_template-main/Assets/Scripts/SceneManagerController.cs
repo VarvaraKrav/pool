@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SceneManagerController : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class SceneManagerController : MonoBehaviour
     }
 
     public static SceneManagerController Instance { get; private set; } // Singleton instance
-    public Image fadeImage; // UI Image for fade effect
+    public GameObject fadeObject; // Object with the material to fade
     public float fadeDuration = 1f; // Duration of the fade effect
     public SceneInfo[] scenesToLoad; // Array to hold scenes and their time durations
     public GameObject audioSwitchController; // Audio switch controller to carry over
@@ -37,6 +36,9 @@ public class SceneManagerController : MonoBehaviour
 
     // New references for the car's point light
     public Light carPointLight; // Assign the car's point light here in the Inspector or via code
+
+    private Material fadeMaterial; // Material to fade
+    private bool isFading = false; // Prevent multiple fades from happening at once
 
     private void Awake()
     {
@@ -55,6 +57,14 @@ public class SceneManagerController : MonoBehaviour
 
     private void Start()
     {
+        if (fadeObject != null)
+        {
+            fadeMaterial = fadeObject.GetComponent<Renderer>().material;
+            // Make sure the fade starts fully transparent
+            Color color = fadeMaterial.color;
+            color.a = 0f;
+            fadeMaterial.color = color;
+        }
         StartCoroutine(InitialSceneWait());
     }
 
@@ -141,9 +151,6 @@ public class SceneManagerController : MonoBehaviour
             yield return StartCoroutine(FadeAndLoadScene(sceneInfo.sceneName));
             Debug.Log($"Scene '{sceneInfo.sceneName}' duration: {sceneInfo.timeDuration} seconds");
 
-
-
-
             // Wait for the duration of the scene
             yield return new WaitForSeconds(sceneInfo.timeDuration);
 
@@ -168,7 +175,7 @@ public class SceneManagerController : MonoBehaviour
 
     private IEnumerator FadeAndLoadScene(string sceneName)
     {
-        yield return StartCoroutine(FadeOut()); // Fade out to black
+        yield return StartCoroutine(FadeOut()); // Fade out the material
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName); // Load the scene asynchronously
         while (!asyncLoad.isDone)
         {
@@ -179,7 +186,7 @@ public class SceneManagerController : MonoBehaviour
 
     private IEnumerator FadeOutAndQuit()
     {
-        yield return StartCoroutine(FadeOut()); // Fade out to black
+        yield return StartCoroutine(FadeOut()); // Fade out the material
         Application.Quit(); // Quit the application
 
         // For editor testing, since Application.Quit() doesn't work in the editor
@@ -190,32 +197,47 @@ public class SceneManagerController : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        fadeImage.gameObject.SetActive(true);
-        Color color = fadeImage.color;
-        float timer = 0f;
-
-        while (timer < fadeDuration)
+        if (fadeMaterial != null && !isFading)
         {
-            timer += Time.deltaTime;
-            color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration);
-            fadeImage.color = color;
-            yield return null;
+            isFading = true;
+            float timer = 0f;
+            Color color = fadeMaterial.color;
+            color.a = 0f; // Ensure starting alpha is 0
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration); // Fade alpha from 0 to 1
+                fadeMaterial.color = color;
+                yield return null;
+            }
+
+            color.a = 1f; // Ensure alpha is fully opaque at the end
+            fadeMaterial.color = color;
+            isFading = false;
         }
     }
 
     private IEnumerator FadeIn()
     {
-        Color color = fadeImage.color;
-        float timer = 0f;
-
-        while (timer < fadeDuration)
+        if (fadeMaterial != null && !isFading)
         {
-            timer += Time.deltaTime;
-            color.a = Mathf.Lerp(1f, 0f, timer / fadeDuration);
-            fadeImage.color = color;
-            yield return null;
-        }
+            isFading = true;
+            float timer = 0f;
+            Color color = fadeMaterial.color;
+            color.a = 1f; // Ensure starting alpha is 1
 
-        fadeImage.gameObject.SetActive(false);
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                color.a = Mathf.Lerp(1f, 0f, timer / fadeDuration); // Fade alpha from 1 to 0
+                fadeMaterial.color = color;
+                yield return null;
+            }
+
+            color.a = 0f; // Ensure alpha is fully transparent at the end
+            fadeMaterial.color = color;
+            isFading = false;
+        }
     }
 }
