@@ -11,6 +11,7 @@ public class SceneManagerController : MonoBehaviour
         public string sceneName; // Name of the scene to load
         public float timeDuration; // Time duration for this specific scene
     }
+    public static SceneManagerController Instance { get; private set; } // Singleton instance
 
     public Image fadeImage; // UI Image for fade effect
     public float fadeDuration = 1f; // Duration of the fade effect
@@ -21,7 +22,24 @@ public class SceneManagerController : MonoBehaviour
     public float finalSceneExitTime = 5f; // Time duration before exiting on the final scene
     public float initialSceneDuration = 3f; // Time duration for the initial scene before transition
 
+    public GameObject portalFXPrefab; // Reference to the portal FX prefab
+
     private int currentSceneIndex = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this; // Set the singleton instance
+            DontDestroyOnLoad(audioSwitchController);
+            DontDestroyOnLoad(experienceAppPlayer);
+            DontDestroyOnLoad(gameObject); // Ensure this manager persists across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy any duplicate instances
+        }
+    }
 
     private void Start()
     {
@@ -35,28 +53,93 @@ public class SceneManagerController : MonoBehaviour
     private IEnumerator InitialSceneWait()
     {
         yield return new WaitForSeconds(initialSceneDuration); // Wait for initial scene duration
+        yield return ActivatePortalFXAndWait(); // Activate the portal FX and wait for it to finish
+    }
+
+    private IEnumerator ActivatePortalFXAndWait()
+    {
+        if (portalFXPrefab != null)
+        {
+            GameObject portalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
+            Animator portalAnimator = portalFX.GetComponent<Animator>();
+
+            if (portalAnimator != null)
+            {
+                // Wait for the portal animation to complete
+                yield return StartCoroutine(WaitForPortalAnimation(portalAnimator));
+            }
+            else
+            {
+                Debug.LogError("No Animator component found on Portal FX Prefab.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Portal FX Prefab is not assigned.");
+        }
+
         StartCoroutine(LoadSceneSequence()); // Start loading the next scene in sequence
     }
 
+    private IEnumerator ActivatePortalFXBeforeFinalSceneAndWait()
+    {
+        if (portalFXPrefab != null)
+        {
+            GameObject portalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
+            Animator portalAnimator = portalFX.GetComponent<Animator>();
+
+            if (portalAnimator != null)
+            {
+                // Wait for the portal animation to complete
+                yield return StartCoroutine(WaitForPortalAnimation(portalAnimator));
+            }
+            else
+            {
+                Debug.LogError("No Animator component found on Portal FX Prefab.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Portal FX Prefab is not assigned.");
+        }
+
+    }
+
+
+    private IEnumerator WaitForPortalAnimation(Animator animator)
+    {
+        // Wait for the animation to finish
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+    }
     private IEnumerator LoadSceneSequence()
     {
-        while (currentSceneIndex < scenesToLoad.Length)
+        // Start loading scenes only if currentSceneIndex is less than the number of scenes
+        if (currentSceneIndex < scenesToLoad.Length)
         {
             SceneInfo sceneInfo = scenesToLoad[currentSceneIndex];
 
             // Start scene fade and wait for the scene's specific duration
             yield return StartCoroutine(FadeAndLoadScene(sceneInfo.sceneName));
+            Debug.Log($"Scene '{sceneInfo.sceneName}' duration: {sceneInfo.timeDuration} seconds");
+
+            // Wait for the duration of the scene
             yield return new WaitForSeconds(sceneInfo.timeDuration);
 
             // Check if this scene is the final one
             if (sceneInfo.sceneName == finalSceneName)
             {
+                Debug.Log("Reached final scene: " + sceneInfo.sceneName);
                 yield return new WaitForSeconds(finalSceneExitTime); // Wait for final scene exit time
                 StartCoroutine(FadeOutAndQuit()); // Quit after fade-out
                 yield break; // End the coroutine since it's the final scene
             }
+            yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
 
-            currentSceneIndex++;
+            currentSceneIndex++; // Move to the next scene
+            yield return StartCoroutine(LoadSceneSequence()); // Recursive call to load the next scene
         }
     }
 
@@ -113,3 +196,4 @@ public class SceneManagerController : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
     }
 }
+
