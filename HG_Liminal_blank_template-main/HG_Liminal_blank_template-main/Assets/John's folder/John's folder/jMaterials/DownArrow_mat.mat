@@ -85,7 +85,7 @@ Material:
     - _FadeDistance: 0
     - _FadeScaleX: 4
     - _GlossMapScale: 1
-    - _Glossiness: 1
+    - _Glossiness: 0.819
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 3
