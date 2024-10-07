@@ -15,13 +15,6 @@ public class WindowController : MonoBehaviour
     public float windowMoveSpeed = 0.5f;
     public float raycastDistance = 10f;
 
-    // Window positions
-    public Vector3 leftWindowUpPosition = new Vector3(-0.799f, 0.417f, 0.174f); //POSITIONS
-    public Vector3 leftWindowDownPosition = new Vector3(-0.997f, 0.032f, 0.174f);
-    public Vector3 rightWindowUpPosition = new Vector3(0.654f, 0.499f, -0.579f);
-    public Vector3 rightWindowDownPosition = new Vector3(0.855f, 0.114f, -0.579f);
-
-
     private Outline leftWindowUpButtonOutline, leftWindowDownButtonOutline;
     private Outline rightWindowUpButtonOutline, rightWindowDownButtonOutline;
 
@@ -31,7 +24,11 @@ public class WindowController : MonoBehaviour
     private bool isRightWindowMovingUp = false;
     private bool isRightWindowMovingDown = false;
 
-    
+    // Window positions
+    private Vector3 leftWindowUpPosition = new Vector3(-0.772f, 0.54f, -0.2215677f);
+    private Vector3 leftWindowDownPosition = new Vector3(-1.016f, 0.072f, -0.2215677f);
+    private Vector3 rightWindowUpPosition = new Vector3(0.639f, 0.621f, -1.038333f);
+    private Vector3 rightWindowDownPosition = new Vector3(0.864f, 0.194f, -1.038333f);
 
     private void Start()
     {
