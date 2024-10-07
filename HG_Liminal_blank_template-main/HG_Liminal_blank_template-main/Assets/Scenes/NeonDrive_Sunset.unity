@@ -7623,12 +7623,6 @@ PrefabInstance:
       propertyPath: spawnRate
       value: 0.067
       objectReference: {fileID: 0}
-    - target: {fileID: 7824882216762206243, guid: e0b6bf7b10c814f44979f1fd08f4e378,
-        type: 3}
-      propertyPath: levelChunksToSpawn.Array.data[0]
-      value: 
-      objectReference: {fileID: 5489761639333067856, guid: 32cea351ed08dca4e96b34f0d0ecee13,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0b6bf7b10c814f44979f1fd08f4e378, type: 3}
 --- !u!1 &1783408260
