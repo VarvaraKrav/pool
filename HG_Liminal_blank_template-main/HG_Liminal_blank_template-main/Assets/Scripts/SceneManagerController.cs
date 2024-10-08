@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneManagerController : MonoBehaviour
 {
@@ -12,11 +13,28 @@ public class SceneManagerController : MonoBehaviour
     }
 
     [System.Serializable]
+    public class MaterialSwapSetting
+    {
+        public GameObject gameObject; // The game object whose material will be swapped
+        public Material newMaterial; // The new material to apply to the game object
+    }
+
+    [System.Serializable]
+    public class MaterialSettings
+    {
+        public MaterialSwapSetting[] materialsToSwap; // List of game objects and their new materials
+        public TextMeshProUGUI[] textMeshProUGUIObjects; // List of TextMeshProUGUI objects to change vertex colors
+        [HideInInspector] public Color originalTextVertexColor; // Original vertex color for TextMeshProUGUI objects
+        public Color textVertexColor = Color.white; // Vertex color to change to for TextMeshProUGUI objects
+    }
+
+    [System.Serializable]
     public class SceneInfo
     {
         public string sceneName; // Name of the scene to load
         public float timeDuration; // Time duration for this specific scene
         public PointLightSettings pointLightSettings; // Light settings for the car's light
+        public MaterialSettings materialSettings; // Material and text settings for the scene
     }
 
     public static SceneManagerController Instance { get; private set; } // Singleton instance
@@ -140,12 +158,7 @@ public class SceneManagerController : MonoBehaviour
         {
             SceneInfo sceneInfo = scenesToLoad[currentSceneIndex];
 
-            // Set the point light intensity and color for the current scene
-            if (carPointLight != null)
-            {
-                carPointLight.color = sceneInfo.pointLightSettings.lightColor;
-                carPointLight.intensity = sceneInfo.pointLightSettings.intensity;
-            }
+            StartCoroutine(DelayedActions(sceneInfo));
 
             // Start scene fade and wait for the scene's specific duration
             yield return StartCoroutine(FadeAndLoadScene(sceneInfo.sceneName));
@@ -163,36 +176,51 @@ public class SceneManagerController : MonoBehaviour
                 yield break; // End the coroutine since it's the final scene
             }
 
-            // Destroy the current portal FX instance before moving to the next scene
-            Destroy(currentPortalFX);
+            // Destroy the current portal FX if it exists
+            if (currentPortalFX != null)
+            {
+                Destroy(currentPortalFX);
+            }
 
-            yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
-
-            currentSceneIndex++; // Move to the next scene
-            yield return StartCoroutine(LoadSceneSequence()); // Recursive call to load the next scene
+            // Move to the next scene
+            currentSceneIndex++;
+            StartCoroutine(LoadSceneSequence()); // Load the next scene
         }
+    }
+
+    // Call this method to start the delay
+    public void StartDelayedActions(SceneInfo sceneInfo)
+    {
+        StartCoroutine(DelayedActions(sceneInfo));
+    }
+
+    private IEnumerator DelayedActions(SceneInfo sceneInfo)
+    {
+        // Wait for 2 seconds
+        yield return new WaitForSeconds(1f);
+
+        // Set the point light intensity and color for the current scene
+        if (carPointLight != null)
+        {
+            carPointLight.color = sceneInfo.pointLightSettings.lightColor;
+            carPointLight.intensity = sceneInfo.pointLightSettings.intensity;
+        }
+
+        // Swap materials for the specified game objects in the current scene
+        SwapMaterials(sceneInfo.materialSettings);
     }
 
     private IEnumerator FadeAndLoadScene(string sceneName)
     {
-        yield return StartCoroutine(FadeOut()); // Fade out the material
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName); // Load the scene asynchronously
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        yield return StartCoroutine(FadeIn()); // Fade back in after loading the scene
+        yield return StartCoroutine(FadeOut()); // Fade out before loading
+        SceneManager.LoadScene(sceneName); // Load the next scene
+        yield return StartCoroutine(FadeIn()); // Fade in after loading
     }
 
     private IEnumerator FadeOutAndQuit()
     {
-        yield return StartCoroutine(FadeOut()); // Fade out the material
+        yield return StartCoroutine(FadeOut()); // Fade out before quitting
         Application.Quit(); // Quit the application
-
-        // For editor testing, since Application.Quit() doesn't work in the editor
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
     }
 
     private IEnumerator FadeOut()
@@ -238,6 +266,43 @@ public class SceneManagerController : MonoBehaviour
             color.a = 0f; // Ensure alpha is fully transparent at the end
             fadeMaterial.color = color;
             isFading = false;
+        }
+    }
+
+    private void SwapMaterials(MaterialSettings materialSettings)
+    {
+        if (materialSettings.materialsToSwap != null)
+        {
+            foreach (MaterialSwapSetting swapSetting in materialSettings.materialsToSwap)
+            {
+                if (swapSetting.gameObject != null && swapSetting.newMaterial != null)
+                {
+                    Renderer renderer = swapSetting.gameObject.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        // Swap the material
+                        Material[] materials = renderer.materials;
+                        for (int i = 0; i < materials.Length; i++)
+                        {
+                            // Replace the material at index i with the new material
+                            materials[i] = swapSetting.newMaterial;
+                        }
+                        renderer.materials = materials; // Update the materials array
+                    }
+                }
+            }
+        }
+
+        // Change vertex colors for TextMeshProUGUI objects
+        if (materialSettings.textMeshProUGUIObjects != null)
+        {
+            foreach (TextMeshProUGUI tmpUGUI in materialSettings.textMeshProUGUIObjects)
+            {
+                if (tmpUGUI != null)
+                {
+                    tmpUGUI.color = materialSettings.textVertexColor; // Set vertex color for TextMeshProUGUI objects
+                }
+            }
         }
     }
 }
