@@ -8254,7 +8254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &384803004005753374
 Transform:
   m_ObjectHideFlags: 0
@@ -8853,7 +8853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &384803004088314339
 Transform:
   m_ObjectHideFlags: 0
@@ -9723,8 +9723,8 @@ Transform:
   - {fileID: 384803005033581338}
   - {fileID: 384803005162706471}
   - {fileID: 2664709874142189417}
-  - {fileID: 384803004763540545}
-  - {fileID: 116977085063069879}
+  - {fileID: 5321451950832169702}
+  - {fileID: 5553244123559738896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9744,20 +9744,62 @@ MonoBehaviour:
   fadeDuration: 1
   scenesToLoad:
   - sceneName: NeonDrive_Tunnel
-    timeDuration: 30
+    timeDuration: 32
     pointLightSettings:
       lightColor: {r: 0, g: 0.59607846, b: 0.91764706, a: 1}
       intensity: 3.2
+    materialSettings:
+      materialsToSwap:
+      - gameObject: {fileID: 384803004208120705}
+        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+      - gameObject: {fileID: 384803004581454735}
+        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+      - gameObject: {fileID: 384803004212529003}
+        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+      - gameObject: {fileID: 384803004460716939}
+        newMaterial: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+      - gameObject: {fileID: 384803003754553672}
+        newMaterial: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+      - gameObject: {fileID: 384803005093552939}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      - gameObject: {fileID: 384803004889222347}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      - gameObject: {fileID: 384803005250289817}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      - gameObject: {fileID: 384803005586650155}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      - gameObject: {fileID: 384803005349097214}
+        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+      - gameObject: {fileID: 384803004813469916}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      - gameObject: {fileID: 384803003848326589}
+        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+      textMeshProUGUIObjects:
+      - {fileID: 384803003817515682}
+      - {fileID: 384803005296815642}
+      - {fileID: 384803003597366478}
+      - {fileID: 384803004588181847}
+      - {fileID: 384803003835775137}
+      - {fileID: 384803003892456154}
+      - {fileID: 384803004115226391}
+      - {fileID: 384803004395184979}
+      originalTextVertexColor: {r: 0, g: 0, b: 0, a: 0}
+      textVertexColor: {r: 0, g: 0.59607846, b: 0.9176471, a: 1}
   - sceneName: NeonDrive_Neon
     timeDuration: 0
     pointLightSettings:
       lightColor: {r: 0, g: 0.59607846, b: 0.91764706, a: 1}
       intensity: 3.2
+    materialSettings:
+      materialsToSwap: []
+      textMeshProUGUIObjects: []
+      originalTextVertexColor: {r: 0, g: 0, b: 0, a: 0}
+      textVertexColor: {r: 1, g: 1, b: 1, a: 1}
   audioSwitchController: {fileID: 2821908403524908552}
   experienceAppPlayer: {fileID: 384803004500307794}
   finalSceneName: NeonDrive_Neon
-  finalSceneExitTime: 75
-  initialSceneDuration: 75
+  finalSceneExitTime: 45
+  initialSceneDuration: 45
   portalFXPrefab: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
     type: 3}
   carPointLight: {fileID: 384803004522746000}
@@ -10308,7 +10350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 3
-  outlineColor: {r: 1, g: 0.654902, b: 0.11764707, a: 1}
+  outlineColor: {r: 1, g: 0.4, b: 0, a: 1}
   outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
@@ -10561,7 +10603,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Chancge Track '
+  m_text: Change Track
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9b3d741993d6f84cbf36af4df685ea8, type: 2}
   m_sharedMaterial: {fileID: -7949844664873994517, guid: e9b3d741993d6f84cbf36af4df685ea8,
@@ -11021,7 +11063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &384803004490582090
 Transform:
   m_ObjectHideFlags: 0
@@ -11443,8 +11485,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.8584906, g: 0.61957103, b: 0.6524413, a: 1}
-  m_Intensity: 3.2
-  m_Range: 2.19
+  m_Intensity: 1.5
+  m_Range: 3.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -15718,7 +15760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &384803005209611499
 Transform:
   m_ObjectHideFlags: 0
@@ -17819,7 +17861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &384803005628560387
 Transform:
   m_ObjectHideFlags: 0
@@ -20512,7 +20554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e0f06c750176947862c10346226439, type: 3}
---- !u!4 &116977085063069879 stripped
+--- !u!4 &5553244123559738896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5516487406859467972, guid: 45e0f06c750176947862c10346226439,
     type: 3}
@@ -20587,6 +20629,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
+      propertyPath: audioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClipNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
       propertyPath: controllerTransform
       value: 
       objectReference: {fileID: 384803003585267603}
@@ -20605,6 +20657,16 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 384803004034237316}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05665f7a4be5e8b4fb2a55194185ba29, type: 3}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClipNames.Array.data[3]
+      value: Hackers
+      objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: outlineScript
@@ -21191,11 +21253,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
         type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
-        type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
       value: 0.6061285
       objectReference: {fileID: 0}
@@ -21221,7 +21278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e0f06c750176947862c10346226439, type: 3}
---- !u!4 &384803004763540545 stripped
+--- !u!4 &5321451950832169702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5516487406859467972, guid: 45e0f06c750176947862c10346226439,
     type: 3}
@@ -21308,6 +21365,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 384803004098896238}
     m_Modifications:
+    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: m_Name
+      value: Left Hand Model
+      objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21362,11 +21424,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
-        type: 3}
-      propertyPath: m_Name
-      value: Left Hand Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
