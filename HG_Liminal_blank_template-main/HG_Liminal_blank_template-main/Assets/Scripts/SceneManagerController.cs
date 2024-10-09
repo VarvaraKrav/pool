@@ -219,9 +219,15 @@ public class SceneManagerController : MonoBehaviour
 
     private IEnumerator FadeOutAndQuit()
     {
-        yield return StartCoroutine(FadeOut()); // Fade out before quitting
-        Application.Quit(); // Quit the application
+        yield return StartCoroutine(FadeOut()); // Fade out before loading the menu
+
+        // Load the NeonDrive_Menu scene instead of quitting the application
+        SceneManager.LoadScene("NeonDrive_Menu");
+
+        // Destroy the SceneManagerController (this gameObject)
+        Destroy(gameObject);
     }
+
 
     private IEnumerator FadeOut()
     {

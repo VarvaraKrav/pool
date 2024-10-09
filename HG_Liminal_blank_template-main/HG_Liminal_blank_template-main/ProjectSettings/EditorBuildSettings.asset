@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NeonDrive_Neon.unity
     guid: 918510e163435d1459cca7e443f4ab3e
+  - enabled: 1
+    path: Assets/Scenes/NeonDrive_Menu.unity
+    guid: a245e72fcb7d7e043932d803004cc5c6
   m_configObjects: {}
