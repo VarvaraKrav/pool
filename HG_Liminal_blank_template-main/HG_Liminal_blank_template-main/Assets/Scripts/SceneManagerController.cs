@@ -182,6 +182,8 @@ public class SceneManagerController : MonoBehaviour
                 Destroy(currentPortalFX);
             }
 
+            yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
+
             // Move to the next scene
             currentSceneIndex++;
             StartCoroutine(LoadSceneSequence()); // Load the next scene
@@ -219,6 +221,9 @@ public class SceneManagerController : MonoBehaviour
 
     private IEnumerator FadeOutAndQuit()
     {
+        // Destroy the current portal FX instance before moving to the next scene
+        Destroy(currentPortalFX);
+        yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
         yield return StartCoroutine(FadeOut()); // Fade out before loading the menu
 
         // Load the NeonDrive_Menu scene instead of quitting the application

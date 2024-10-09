@@ -5250,7 +5250,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 6
+  - 36
 --- !u!4 &2036831524
 Transform:
   m_ObjectHideFlags: 0
@@ -5602,17 +5602,17 @@ PrefabInstance:
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: scenesToLoad.Array.data[0].timeDuration
-      value: 5
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: initialSceneDuration
-      value: 5
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: finalSceneExitTime
-      value: 5
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 384803004395184979, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
