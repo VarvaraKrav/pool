@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 238302828}
   - component: {fileID: 6541513152205717670}
   m_Layer: 0
-  m_Name: LevelChunk
+  m_Name: LevelChunk 1
   m_TagString: LevelChunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4471,9 +4471,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: dc9e23ff1aa60ac419983f250fa5c65d,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: dc9e23ff1aa60ac419983f250fa5c65d,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 95edebcf38adbc844a7d876a77eb8be2, type: 2}
+      objectReference: {fileID: 2100000, guid: 9a9164f8c2beadd49b1d41ba3b76e435, type: 2}
+    - target: {fileID: -1504981713932161579, guid: dc9e23ff1aa60ac419983f250fa5c65d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a9164f8c2beadd49b1d41ba3b76e435, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9e23ff1aa60ac419983f250fa5c65d, type: 3}
 --- !u!4 &4512810067911346007 stripped

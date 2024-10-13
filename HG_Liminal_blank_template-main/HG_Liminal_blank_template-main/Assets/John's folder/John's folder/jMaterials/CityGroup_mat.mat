@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 0811a66c8c3c91c418eaf6b4a4cac2ba, type: 3}
+        m_Texture: {fileID: 2800000, guid: 025dc4de597b8d74cbf54db3a74fa6aa, type: 3}
         m_Scale: {x: 1, y: 1.13}
         m_Offset: {x: 1, y: 0}
     - _MainTex:

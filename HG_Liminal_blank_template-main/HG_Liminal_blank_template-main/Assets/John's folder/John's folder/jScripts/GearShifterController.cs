@@ -10,8 +10,8 @@ public class GearShifterController : MonoBehaviour
     public Outline outlineScript; // Reference to the outline script attached to the gear shifter
 
     // Positions for each gear (Local positions relative to parent object)
-    public Vector3 pPositionLocal; // Park position
-    public Vector3 rPositionLocal; // Reverse position
+    //public Vector3 pPositionLocal; // Park position
+    //public Vector3 rPositionLocal; // Reverse position
     public Vector3 dPositionLocal; // Drive position
     public Vector3 sPositionLocal; // Sport position
 
@@ -27,7 +27,7 @@ public class GearShifterController : MonoBehaviour
 
     private bool isSelected = false; // To check if the user has clicked on the gear shifter
     private bool isPointing = false; // To check if the user is pointing at the gear shifter
-    private string currentGear = "P"; // Track current gear state
+    private string currentGear = "D"; // Track current gear state
 
     private void Start()
     {
@@ -67,14 +67,7 @@ public class GearShifterController : MonoBehaviour
         // Check the current gear and move to the next gear
         switch (currentGear)
         {
-            case "P":
-                StartCoroutine(MoveGearShifter(pPositionLocal, rPositionLocal));
-                currentGear = "R";
-                break;
-            case "R":
-                StartCoroutine(MoveGearShifter(rPositionLocal, dPositionLocal));
-                currentGear = "D";
-                break;
+            
             case "D":
                 StartCoroutine(MoveGearShifter(dPositionLocal, sPositionLocal));
                 currentGear = "S";
