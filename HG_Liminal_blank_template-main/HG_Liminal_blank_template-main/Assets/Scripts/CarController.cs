@@ -1,134 +1,242 @@
 ﻿using UnityEngine;
-using UnityEngine.XR;
 using TMPro;
 
 public class CarController : MonoBehaviour
 {
     public Transform leftController;
     public Transform rightController;
-    public GameObject steeringWheel; // Assign the steering wheel GameObject in the Inspector
-    public GameObject car; // Assign the car GameObject in the Inspector
+    public GameObject steeringWheel;
+    public GameObject car;
     public float raycastDistance = 10f;
-    public float rotationSpeed = 100f; // Adjust this to control the rotation speed
-    public float carMovementSpeed = 5f; // Adjust this to control the car's movement speed
-    public float minX = -5f; // Minimum X position for the car
-    public float maxX = 5f;  // Maximum X position for the car
+    public float rotationSpeed = 100f;
+    public float carMovementSpeed = 5f;
+    public float minX = -5f;
+    public float maxX = 5f;
+    public float maxZRotation = 45f; // Maximum Z rotation of the steering wheel
+    public TextMeshProUGUI autopilotText;
+    public float waitTimeMin = 1f;
+    public float waitTimeMax = 3f;
 
     private Outline steeringWheelOutline;
     private Quaternion initialRotation;
     private bool isRotating = false;
     private Transform activeController;
 
+    [SerializeField]
+    private bool isAutopilot = false; // Autopilot state exposed in Inspector
+    private bool movingRight = true; // Direction of movement in autopilot
+    private bool isWaiting = false;
+
     void Start()
     {
         if (steeringWheel != null)
         {
-            // Get the Outline component from the steering wheel
             steeringWheelOutline = steeringWheel.GetComponent<Outline>();
             if (steeringWheelOutline != null)
             {
-                steeringWheelOutline.enabled = false; // Ensure the outline is initially disabled
+                steeringWheelOutline.enabled = false;
             }
 
-            // Store the initial rotation of the steering wheel
             initialRotation = steeringWheel.transform.rotation;
         }
 
+        // Ensure autopilot text is initially off
+        if (autopilotText != null)
+        {
+            autopilotText.gameObject.SetActive(isAutopilot);
+        }
     }
 
     void Update()
     {
-        if (steeringWheelOutline == null) return;
-
-        // Check if either controller is pointing at the steering wheel
-        bool isLeftControllerPointing = IsControllerPointingAtObject(leftController);
-        bool isRightControllerPointing = IsControllerPointingAtObject(rightController);
-
-        // Enable the outline if either controller is pointing at the steering wheel
-        steeringWheelOutline.enabled = isLeftControllerPointing || isRightControllerPointing;
-
-        // Check for input and rotate the steering wheel only if it's highlighted
-        if ((steeringWheelOutline.enabled && isLeftControllerPointing && Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0.1f) ||
-            (steeringWheelOutline.enabled && isRightControllerPointing && Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") > 0.1f) ||
-			(steeringWheelOutline.enabled && isRightControllerPointing && Input.GetAxis("Oculus_CrossPlatform_PrimaryHandTrigger") > 0.1f) ||
-		    (steeringWheelOutline.enabled && isLeftControllerPointing && Input.GetAxis("Oculus_CrossPlatform_SecondaryHandTrigger") > 0.1f) ||
-            (steeringWheelOutline.enabled && Input.GetMouseButton(0)) ||
-            (steeringWheelOutline.enabled && Input.GetMouseButton(1)))
+        if (isAutopilot)
         {
-            isRotating = true;
-            activeController = isLeftControllerPointing ? leftController : rightController;
+            MoveCarInAutopilot();
+            SyncSteeringWheelWithCar(); // Sync the steering wheel rotation with the car's movement
         }
         else
         {
-            isRotating = false;
-            steeringWheel.transform.rotation = Quaternion.Lerp(steeringWheel.transform.rotation, initialRotation, Time.deltaTime * rotationSpeed);
-        }
+            if (steeringWheelOutline == null) return;
 
-        if (isRotating)
+            bool isLeftControllerPointing = IsControllerPointingAtObject(leftController);
+            bool isRightControllerPointing = IsControllerPointingAtObject(rightController);
+
+            steeringWheelOutline.enabled = isLeftControllerPointing || isRightControllerPointing;
+
+            if ((steeringWheelOutline.enabled && isLeftControllerPointing && Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0.1f) ||
+                (steeringWheelOutline.enabled && isRightControllerPointing && Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") > 0.1f) ||
+                (steeringWheelOutline.enabled && Input.GetMouseButton(0)) ||
+                (steeringWheelOutline.enabled && Input.GetMouseButton(1)))
+            {
+                isRotating = true;
+                activeController = isLeftControllerPointing ? leftController : rightController;
+            }
+            else
+            {
+                isRotating = false;
+                steeringWheel.transform.rotation = Quaternion.Lerp(steeringWheel.transform.rotation, initialRotation, Time.deltaTime * rotationSpeed);
+            }
+
+            if (isRotating)
+            {
+                RotateSteeringWheel();
+                MoveCarBasedOnSteeringWheel();
+            }
+        }
+    }
+
+    // Automatically update the autopilot text when toggled in the Inspector
+    private void OnValidate()
+    {
+        if (autopilotText != null)
         {
-            RotateSteeringWheel();
-            MoveCarBasedOnSteeringWheel();
+            autopilotText.gameObject.SetActive(isAutopilot);
+        }
+    }
+
+    public void ToggleAutopilot()
+    {
+        isAutopilot = !isAutopilot;
+
+        if (autopilotText != null)
+        {
+            autopilotText.gameObject.SetActive(isAutopilot);
+        }
+    }
+
+    private void MoveCarInAutopilot()
+    {
+        if (isWaiting) return;
+
+        Vector3 newPosition = car.transform.position;
+
+        if (movingRight)
+        {
+            newPosition.x += carMovementSpeed * Time.deltaTime;
+            if (newPosition.x >= maxX)
+            {
+                newPosition.x = maxX;
+                StartCoroutine(WaitAtPosition());
+                movingRight = false;
+            }
+        }
+        else
+        {
+            newPosition.x -= carMovementSpeed * Time.deltaTime;
+            if (newPosition.x <= minX)
+            {
+                newPosition.x = minX;
+                StartCoroutine(WaitAtPosition());
+                movingRight = true;
+            }
         }
 
+        car.transform.position = newPosition;
+    }
+
+    private System.Collections.IEnumerator WaitAtPosition()
+    {
+        isWaiting = true;
+
+        // Smoothly reset the steering wheel rotation to 0 while waiting
+        yield return StartCoroutine(ResetSteeringWheelRotation());
+
+        // Random wait time at either end
+        float waitTime = Random.Range(waitTimeMin, waitTimeMax);
+        yield return new WaitForSeconds(waitTime);
+
+        isWaiting = false;
+    }
+
+    private System.Collections.IEnumerator ResetSteeringWheelRotation()
+    {
+        float resetDuration = 1f; // Time it takes to reset the wheel to 0 rotation
+        float elapsedTime = 0f;
+
+        Quaternion currentRotation = steeringWheel.transform.localRotation;
+        Quaternion targetRotation = Quaternion.Euler(steeringWheel.transform.localEulerAngles.x, steeringWheel.transform.localEulerAngles.y, 0);
+
+        // Smoothly interpolate the rotation back to Z = 0
+        while (elapsedTime < resetDuration)
+        {
+            steeringWheel.transform.localRotation = Quaternion.Lerp(currentRotation, targetRotation, elapsedTime / resetDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        steeringWheel.transform.localRotation = targetRotation;
+    }
+
+    // Sync steering wheel rotation with car's movement during autopilot
+    private void SyncSteeringWheelWithCar()
+    {
+        if (isWaiting)
+        {
+            // If the car is waiting, no rotation is applied (it will reset to Z = 0)
+            return;
+        }
+
+        float targetZRotation;
+
+        // Invert the rotation direction: when car moves right, rotate the wheel to negative Z, and left to positive Z
+        if (movingRight)
+        {
+            targetZRotation = -maxZRotation;
+        }
+        else
+        {
+            targetZRotation = maxZRotation;
+        }
+
+        // Smoothly rotate the steering wheel's local Z rotation towards the target rotation
+        Quaternion targetRotation = Quaternion.Euler(steeringWheel.transform.localEulerAngles.x, steeringWheel.transform.localEulerAngles.y, targetZRotation);
+        steeringWheel.transform.localRotation = Quaternion.Lerp(steeringWheel.transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
     private void RotateSteeringWheel()
     {
         float rotationAmount = 0f;
 
-
         if (Input.GetMouseButton(0))
         {
-            // Left mouse button rotates in one direction (counterclockwise, positive Z)
             rotationAmount = rotationSpeed * Time.deltaTime;
         }
         else if (Input.GetMouseButton(1))
         {
-            // Right mouse button rotates in the opposite direction (clockwise, negative Z)
             rotationAmount = -rotationSpeed * Time.deltaTime;
         }
-		
+
         if (activeController != null)
         {
-            if (activeController == leftController && Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0.1f || Input.GetAxis("Oculus_CrossPlatform_PrimaryHandTrigger") > 0.1f)
+            if (activeController == leftController && Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0.1f)
             {
-                rotationAmount = -rotationSpeed * Time.deltaTime; // Secondary trigger (left) rotates counterwise
+                rotationAmount = -rotationSpeed * Time.deltaTime;
             }
-            else if (activeController == rightController && Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") > 0.1f || Input.GetAxis("Oculus_CrossPlatform_SecondaryHandTrigger") > 0.1f)
+            else if (activeController == rightController && Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") > 0.1f)
             {
-                rotationAmount = rotationSpeed * Time.deltaTime; // Primary trigger (right) rotates counterclickwise
+                rotationAmount = rotationSpeed * Time.deltaTime;
             }
         }
 
-        // Apply rotation to the steering wheel on the Z axis
         steeringWheel.transform.Rotate(Vector3.forward, rotationAmount);
     }
 
     private void MoveCarBasedOnSteeringWheel()
     {
-        // Get the current rotation angle of the steering wheel
         float steeringAngle = steeringWheel.transform.localEulerAngles.z;
 
-        // Normalize the steering angle to range [-180, 180]
         if (steeringAngle > 180)
         {
             steeringAngle -= 360;
         }
 
-        // Calculate the movement direction based on the steering angle
         float movementDirection = Mathf.Clamp(steeringAngle / 180f, -1f, 1f);
-
-        // Invert the movement direction to match the correct control scheme
         movementDirection = -movementDirection;
 
-        // Calculate the new position of the car
         Vector3 carMovement = new Vector3(movementDirection * carMovementSpeed * Time.deltaTime, 0f, 0f);
         Vector3 newPosition = car.transform.position + carMovement;
 
-        // Clamp the car's position to the specified min and max X values
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-
-        // Apply the clamped position to the car
         car.transform.position = newPosition;
     }
 
@@ -137,7 +245,6 @@ public class CarController : MonoBehaviour
         Ray ray = new Ray(controller.position, controller.forward);
         RaycastHit hit;
 
-        // Perform the raycast and check if it hits the steering wheel
         if (Physics.Raycast(ray, out hit, raycastDistance))
         {
             if (hit.collider.gameObject == steeringWheel)
