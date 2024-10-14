@@ -6,15 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NeonDrive_Menu.unity
-    guid: a245e72fcb7d7e043932d803004cc5c6
-  - enabled: 1
-    path: Assets/Scenes/NeonDrive_Sunset.unity
-    guid: 6c8e6078c73545345a6597be640f92aa
-  - enabled: 1
-    path: Assets/Scenes/NeonDrive_Tunnel.unity
-    guid: 88649c4358e959a40a5cfdc1174f8ad5
-  - enabled: 1
-    path: Assets/Scenes/NeonDrive_Neon.unity
-    guid: 918510e163435d1459cca7e443f4ab3e
+    path: Assets/Scenes/NeonDrive_Main.unity
+    guid: 25c7d0d5432d9a04db5a8b73b69cbd55
   m_configObjects: {}

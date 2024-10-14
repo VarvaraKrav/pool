@@ -47,12 +47,15 @@ public class SceneManagerController : MonoBehaviour
     public float finalSceneDuration = 5f; // Duration for the final scene
     public GameObject audioSwitchController;
     public GameObject experienceAppPlayer;
+    public GameObject portalFXPrefab; // Add a reference to the portalFX prefab
 
     public Light carPointLight;
     private Material fadeMaterial;
     private bool isFading = false;
     private int currentSceneIndex = 0;
     private GameObject currentScenePrefab;
+    private GameObject portalFXInstance; // Reference to the instantiated portalFX
+    private AudioSource audioSource; // Reference to the AudioSource component
 
     private void Start()
     {
@@ -62,6 +65,12 @@ public class SceneManagerController : MonoBehaviour
             Color color = fadeMaterial.color;
             color.a = 0f;
             fadeMaterial.color = color;
+        }
+
+        // Get the AudioSource from the audioSwitchController
+        if (audioSwitchController != null)
+        {
+            audioSource = audioSwitchController.GetComponent<AudioSource>();
         }
 
         // Load the first scene (Element 0) immediately and display it for its duration
@@ -94,17 +103,27 @@ public class SceneManagerController : MonoBehaviour
         }
     }
 
-
-
     private IEnumerator LoadNextScene()
     {
         while (currentSceneIndex < sceneSettings.Length)
         {
             SceneSettings currentScene = sceneSettings[currentSceneIndex];
 
+            // Instantiate and parent the portalFX to ExperienceApp 5 seconds before fading out
+            if (portalFXPrefab != null)
+            {
+                portalFXInstance = Instantiate(portalFXPrefab, experienceAppPlayer.transform); // Parent to ExperienceApp
+            }
+
+            // Wait for 4 seconds before starting fade out
+            yield return new WaitForSeconds(4f);
+
             yield return StartCoroutine(FadeOut()); // Fade out before loading the next scene
 
+            // Destroy both the current scene prefab and the portalFXInstance
             if (currentScenePrefab != null) Destroy(currentScenePrefab); // Destroy the previous scene prefab
+            if (portalFXInstance != null) Destroy(portalFXInstance); // Destroy the portalFX
+
             currentScenePrefab = Instantiate(currentScene.scenePrefab); // Instantiate new scene prefab
 
             ApplySceneSettings(currentScene); // Apply settings (Skybox, lighting, fog, etc.)
@@ -119,9 +138,20 @@ public class SceneManagerController : MonoBehaviour
         // Load final scene prefab
         if (finalScenePrefab != null)
         {
+            // Instantiate and parent the portalFX for the final scene FadeOut
+            if (portalFXPrefab != null)
+            {
+                portalFXInstance = Instantiate(portalFXPrefab, experienceAppPlayer.transform); // Parent to ExperienceApp
+            }
+
+            // Wait for 5 seconds before starting fade out
+            yield return new WaitForSeconds(4f);
+
             yield return StartCoroutine(FadeOut());
 
             if (currentScenePrefab != null) Destroy(currentScenePrefab); // Destroy the last scene prefab
+            if (portalFXInstance != null) Destroy(portalFXInstance); // Destroy the portalFX
+
             currentScenePrefab = Instantiate(finalScenePrefab); // Instantiate final scene prefab
 
             ApplyFinalSceneSettings(); // Apply any settings you want for the final scene
@@ -130,21 +160,37 @@ public class SceneManagerController : MonoBehaviour
 
             yield return new WaitForSeconds(finalSceneDuration); // Wait for final scene duration
 
+            // Instantiate and parent the portalFX to ExperienceApp 5 seconds before fading out for the final time
+            if (portalFXPrefab != null)
+            {
+                portalFXInstance = Instantiate(portalFXPrefab, experienceAppPlayer.transform); // Parent to ExperienceApp
+            }
+
+            // Wait for 5 seconds before starting fade out
+            yield return new WaitForSeconds(5f);
+
+
             // Quit the application after the final scene
             Debug.Log("Application Quit after Final Scene");
             ExperienceApp.End();
             var fader = ScreenFader.Instance;
             fader.FadeToBlack();
             StartCoroutine(DestroyCurrentScenePrefab());
+
+
         }
     }
+
     private IEnumerator DestroyCurrentScenePrefab()
     {
         yield return new WaitForSeconds(2); // Wait for 2 seconds
         Destroy(currentScenePrefab); // Destroy the last scene prefab
+                                     // Stop the AudioSource when ExperienceApp.End() is called
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
     }
-
-
 
     private void ApplySceneSettings(SceneSettings scene)
     {

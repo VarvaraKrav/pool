@@ -9995,6 +9995,7 @@ MonoBehaviour:
   finalSceneDuration: 5
   audioSwitchController: {fileID: 2821908403524908552}
   experienceAppPlayer: {fileID: 384803004500307794}
+  portalFXPrefab: {fileID: 0}
   carPointLight: {fileID: 384803004522746000}
 --- !u!1 &384803004261889458
 GameObject:
