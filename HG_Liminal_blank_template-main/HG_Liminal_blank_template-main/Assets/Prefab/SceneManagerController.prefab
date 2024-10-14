@@ -9990,67 +9990,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeObject: {fileID: 870276824}
   fadeDuration: 1
-  scenesToLoad:
-  - sceneName: NeonDrive_Tunnel
-    timeDuration: 35
-    pointLightSettings:
-      lightColor: {r: 0, g: 0.59607846, b: 0.91764706, a: 1}
-      intensity: 3.2
-    materialSettings:
-      materialsToSwap:
-      - gameObject: {fileID: 384803004208120705}
-        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
-      - gameObject: {fileID: 384803004581454735}
-        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
-      - gameObject: {fileID: 384803004212529003}
-        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
-      - gameObject: {fileID: 384803004460716939}
-        newMaterial: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
-      - gameObject: {fileID: 384803003754553672}
-        newMaterial: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
-      - gameObject: {fileID: 384803005093552939}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      - gameObject: {fileID: 384803004889222347}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      - gameObject: {fileID: 384803005250289817}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      - gameObject: {fileID: 384803005586650155}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      - gameObject: {fileID: 384803005349097214}
-        newMaterial: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
-      - gameObject: {fileID: 384803004813469916}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      - gameObject: {fileID: 384803003848326589}
-        newMaterial: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
-      textMeshProUGUIObjects:
-      - {fileID: 384803003817515682}
-      - {fileID: 384803005296815642}
-      - {fileID: 384803003597366478}
-      - {fileID: 384803004588181847}
-      - {fileID: 384803003835775137}
-      - {fileID: 384803003892456154}
-      - {fileID: 384803004115226391}
-      - {fileID: 384803004395184979}
-      - {fileID: 389349712}
-      originalTextVertexColor: {r: 0, g: 0, b: 0, a: 0}
-      textVertexColor: {r: 0, g: 0.59607846, b: 0.9176471, a: 1}
-  - sceneName: NeonDrive_Neon
-    timeDuration: 0
-    pointLightSettings:
-      lightColor: {r: 0, g: 0.59607846, b: 0.91764706, a: 1}
-      intensity: 3.2
-    materialSettings:
-      materialsToSwap: []
-      textMeshProUGUIObjects: []
-      originalTextVertexColor: {r: 0, g: 0, b: 0, a: 0}
-      textVertexColor: {r: 1, g: 1, b: 1, a: 1}
+  sceneSettings: []
   audioSwitchController: {fileID: 2821908403524908552}
   experienceAppPlayer: {fileID: 384803004500307794}
-  finalSceneName: NeonDrive_Neon
-  finalSceneExitTime: 75
-  initialSceneDuration: 75
-  portalFXPrefab: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
-    type: 3}
   carPointLight: {fileID: 384803004522746000}
 --- !u!1 &384803004261889458
 GameObject:
@@ -21645,11 +21587,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 384803004098896238}
     m_Modifications:
-    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
-        type: 3}
-      propertyPath: m_Name
-      value: Left Hand Model
-      objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21704,6 +21641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: m_Name
+      value: Left Hand Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}

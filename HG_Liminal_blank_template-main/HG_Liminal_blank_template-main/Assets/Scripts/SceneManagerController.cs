@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SceneManagerController : MonoBehaviour
@@ -8,276 +7,105 @@ public class SceneManagerController : MonoBehaviour
     [System.Serializable]
     public class PointLightSettings
     {
-        public Color lightColor = Color.white; // Default light color
-        public float intensity = 1f; // Default light intensity
+        public Color lightColor = Color.white;
+        public float intensity = 1f;
     }
 
     [System.Serializable]
     public class MaterialSwapSetting
     {
-        public GameObject gameObject; // The game object whose material will be swapped
-        public Material newMaterial; // The new material to apply to the game object
+        public GameObject gameObject;
+        public Material newMaterial;
     }
 
     [System.Serializable]
     public class MaterialSettings
     {
-        public MaterialSwapSetting[] materialsToSwap; // List of game objects and their new materials
-        public TextMeshProUGUI[] textMeshProUGUIObjects; // List of TextMeshProUGUI objects to change vertex colors
-        [HideInInspector] public Color originalTextVertexColor; // Original vertex color for TextMeshProUGUI objects
-        public Color textVertexColor = Color.white; // Vertex color to change to for TextMeshProUGUI objects
+        public MaterialSwapSetting[] materialsToSwap;
+        public TextMeshProUGUI[] textMeshProUGUIObjects;
+        public Color textVertexColor = Color.white;
     }
 
     [System.Serializable]
-    public class SceneInfo
+    public class SceneSettings
     {
-        public string sceneName; // Name of the scene to load
-        public float timeDuration; // Time duration for this specific scene
-        public PointLightSettings pointLightSettings; // Light settings for the car's light
-        public MaterialSettings materialSettings; // Material and text settings for the scene
+        public GameObject scenePrefab; // Prefab to load for this scene
+        public float sceneDuration = 5f; // How long this scene will last
+        public Material skyboxMaterial; // Skybox for the scene
+        public Color ambientLightColor = Color.white; // Ambient lighting color for the scene
+        public Color fogColor = Color.gray; // Fog color for the scene
+        public PointLightSettings pointLightSettings;
+        public MaterialSettings materialSettings;
     }
 
-    public static SceneManagerController Instance { get; private set; } // Singleton instance
-    public GameObject fadeObject; // Object with the material to fade
-    public float fadeDuration = 1f; // Duration of the fade effect
-    public SceneInfo[] scenesToLoad; // Array to hold scenes and their time durations
-    public GameObject audioSwitchController; // Audio switch controller to carry over
-    public GameObject experienceAppPlayer; // Experience app player to carry over
-    public string finalSceneName; // The name of the final scene
-    public float finalSceneExitTime = 5f; // Time duration before exiting on the final scene
-    public float initialSceneDuration = 3f; // Time duration for the initial scene before transition
+    public GameObject fadeObject;
+    public float fadeDuration = 1f;
+    public SceneSettings[] sceneSettings; // Array to manage scenes as prefabs
+    public GameObject audioSwitchController;
+    public GameObject experienceAppPlayer;
 
-    public GameObject portalFXPrefab; // Reference to the portal FX prefab
-    private GameObject currentPortalFX; // Keep a reference to the current portal FX instance
-
+    public Light carPointLight;
+    private Material fadeMaterial;
+    private bool isFading = false;
     private int currentSceneIndex = 0;
-
-    // New references for the car's point light
-    public Light carPointLight; // Assign the car's point light here in the Inspector or via code
-
-    private Material fadeMaterial; // Material to fade
-    private bool isFading = false; // Prevent multiple fades from happening at once
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this; // Set the singleton instance
-            DontDestroyOnLoad(audioSwitchController);
-            DontDestroyOnLoad(experienceAppPlayer);
-            DontDestroyOnLoad(gameObject); // Ensure this manager persists across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy any duplicate instances
-        }
-    }
+    private GameObject currentScenePrefab;
 
     private void Start()
     {
         if (fadeObject != null)
         {
             fadeMaterial = fadeObject.GetComponent<Renderer>().material;
-            // Make sure the fade starts fully transparent
             Color color = fadeMaterial.color;
             color.a = 0f;
             fadeMaterial.color = color;
         }
-        StartCoroutine(InitialSceneWait());
+        StartCoroutine(LoadNextScene());
     }
 
-    private IEnumerator InitialSceneWait()
+    private IEnumerator LoadNextScene()
     {
-        yield return new WaitForSeconds(initialSceneDuration); // Wait for initial scene duration
-        yield return ActivatePortalFXAndWait(); // Activate the portal FX and wait for it to finish
-    }
-
-    private IEnumerator ActivatePortalFXAndWait()
-    {
-        if (portalFXPrefab != null)
+        while (currentSceneIndex < sceneSettings.Length)
         {
-            currentPortalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
-            currentPortalFX.transform.SetParent(experienceAppPlayer.transform); // Make portal a child of ExperienceAppPlayer
-            Animator portalAnimator = currentPortalFX.GetComponent<Animator>();
+            SceneSettings currentScene = sceneSettings[currentSceneIndex];
 
-            if (portalAnimator != null)
-            {
-                // Wait for the portal animation to complete
-                yield return StartCoroutine(WaitForPortalAnimation(portalAnimator));
-            }
-            else
-            {
-                Debug.LogError("No Animator component found on Portal FX Prefab.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Portal FX Prefab is not assigned.");
-        }
+            yield return StartCoroutine(FadeOut()); // Fade out before loading the next scene
 
-        StartCoroutine(LoadSceneSequence()); // Start loading the next scene in sequence
-    }
+            if (currentScenePrefab != null) Destroy(currentScenePrefab); // Destroy the previous scene prefab
+            currentScenePrefab = Instantiate(currentScene.scenePrefab); // Instantiate new scene prefab
 
-    private IEnumerator ActivatePortalFXBeforeFinalSceneAndWait()
-    {
-        if (portalFXPrefab != null)
-        {
-            currentPortalFX = Instantiate(portalFXPrefab); // Instantiate the portal FX
-            currentPortalFX.transform.SetParent(experienceAppPlayer.transform); // Make portal a child of ExperienceAppPlayer
-            Animator portalAnimator = currentPortalFX.GetComponent<Animator>();
+            ApplySceneSettings(currentScene); // Apply settings (Skybox, lighting, fog, etc.)
 
-            if (portalAnimator != null)
-            {
-                // Wait for the portal animation to complete
-                yield return StartCoroutine(WaitForPortalAnimation(portalAnimator));
-            }
-            else
-            {
-                Debug.LogError("No Animator component found on Portal FX Prefab.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Portal FX Prefab is not assigned.");
-        }
-    }
+            yield return StartCoroutine(FadeIn()); // Fade in after loading
 
-    private IEnumerator WaitForPortalAnimation(Animator animator)
-    {
-        // Wait for the animation to finish
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-        {
-            yield return null;
-        }
-    }
+            yield return new WaitForSeconds(currentScene.sceneDuration); // Wait for scene duration
 
-    private IEnumerator LoadSceneSequence()
-    {
-        // Start loading scenes only if currentSceneIndex is less than the number of scenes
-        if (currentSceneIndex < scenesToLoad.Length)
-        {
-            SceneInfo sceneInfo = scenesToLoad[currentSceneIndex];
-
-            StartCoroutine(DelayedActions(sceneInfo));
-
-            // Start scene fade and wait for the scene's specific duration
-            yield return StartCoroutine(FadeAndLoadScene(sceneInfo.sceneName));
-            Debug.Log($"Scene '{sceneInfo.sceneName}' duration: {sceneInfo.timeDuration} seconds");
-
-            // Wait for the duration of the scene
-            yield return new WaitForSeconds(sceneInfo.timeDuration);
-
-            // Check if this scene is the final one
-            if (sceneInfo.sceneName == finalSceneName)
-            {
-                Debug.Log("Reached final scene: " + sceneInfo.sceneName);
-                yield return new WaitForSeconds(finalSceneExitTime); // Wait for final scene exit time
-                StartCoroutine(FadeOutAndQuit()); // Quit after fade-out
-                yield break; // End the coroutine since it's the final scene
-            }
-
-            // Destroy the current portal FX if it exists
-            if (currentPortalFX != null)
-            {
-                Destroy(currentPortalFX);
-            }
-
-            yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
-
-            // Move to the next scene
             currentSceneIndex++;
-            StartCoroutine(LoadSceneSequence()); // Load the next scene
         }
     }
 
-    // Call this method to start the delay
-    public void StartDelayedActions(SceneInfo sceneInfo)
+    private void ApplySceneSettings(SceneSettings scene)
     {
-        StartCoroutine(DelayedActions(sceneInfo));
-    }
+        // Apply Skybox material
+        if (scene.skyboxMaterial != null)
+        {
+            RenderSettings.skybox = scene.skyboxMaterial;
+        }
 
-    private IEnumerator DelayedActions(SceneInfo sceneInfo)
-    {
-        // Wait for 2 seconds
-        yield return new WaitForSeconds(1f);
+        // Apply ambient light
+        RenderSettings.ambientLight = scene.ambientLightColor;
 
-        // Set the point light intensity and color for the current scene
+        // Apply fog color
+        RenderSettings.fogColor = scene.fogColor;
+
+        // Apply point light settings
         if (carPointLight != null)
         {
-            carPointLight.color = sceneInfo.pointLightSettings.lightColor;
-            carPointLight.intensity = sceneInfo.pointLightSettings.intensity;
+            carPointLight.color = scene.pointLightSettings.lightColor;
+            carPointLight.intensity = scene.pointLightSettings.intensity;
         }
 
-        // Swap materials for the specified game objects in the current scene
-        SwapMaterials(sceneInfo.materialSettings);
-    }
-
-    private IEnumerator FadeAndLoadScene(string sceneName)
-    {
-        yield return StartCoroutine(FadeOut()); // Fade out before loading
-        SceneManager.LoadScene(sceneName); // Load the next scene
-        yield return StartCoroutine(FadeIn()); // Fade in after loading
-    }
-
-    private IEnumerator FadeOutAndQuit()
-    {
-        // Destroy the current portal FX instance before moving to the next scene
-        Destroy(currentPortalFX);
-        yield return ActivatePortalFXBeforeFinalSceneAndWait(); // This ensures the portal FX plays before moving to the next scene
-        yield return StartCoroutine(FadeOut()); // Fade out before loading the menu
-
-        // Load the NeonDrive_Menu scene instead of quitting the application
-        SceneManager.LoadScene("NeonDrive_Menu");
-
-        // Destroy the SceneManagerController (this gameObject)
-        Destroy(gameObject);
-    }
-
-
-    private IEnumerator FadeOut()
-    {
-        if (fadeMaterial != null && !isFading)
-        {
-            isFading = true;
-            float timer = 0f;
-            Color color = fadeMaterial.color;
-            color.a = 0f; // Ensure starting alpha is 0
-
-            while (timer < fadeDuration)
-            {
-                timer += Time.deltaTime;
-                color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration); // Fade alpha from 0 to 1
-                fadeMaterial.color = color;
-                yield return null;
-            }
-
-            color.a = 1f; // Ensure alpha is fully opaque at the end
-            fadeMaterial.color = color;
-            isFading = false;
-        }
-    }
-
-    private IEnumerator FadeIn()
-    {
-        if (fadeMaterial != null && !isFading)
-        {
-            isFading = true;
-            float timer = 0f;
-            Color color = fadeMaterial.color;
-            color.a = 1f; // Ensure starting alpha is 1
-
-            while (timer < fadeDuration)
-            {
-                timer += Time.deltaTime;
-                color.a = Mathf.Lerp(1f, 0f, timer / fadeDuration); // Fade alpha from 1 to 0
-                fadeMaterial.color = color;
-                yield return null;
-            }
-
-            color.a = 0f; // Ensure alpha is fully transparent at the end
-            fadeMaterial.color = color;
-            isFading = false;
-        }
+        // Apply material swaps and text changes
+        SwapMaterials(scene.materialSettings);
     }
 
     private void SwapMaterials(MaterialSettings materialSettings)
@@ -291,29 +119,72 @@ public class SceneManagerController : MonoBehaviour
                     Renderer renderer = swapSetting.gameObject.GetComponent<Renderer>();
                     if (renderer != null)
                     {
-                        // Swap the material
                         Material[] materials = renderer.materials;
                         for (int i = 0; i < materials.Length; i++)
                         {
-                            // Replace the material at index i with the new material
                             materials[i] = swapSetting.newMaterial;
                         }
-                        renderer.materials = materials; // Update the materials array
+                        renderer.materials = materials;
                     }
                 }
             }
         }
 
-        // Change vertex colors for TextMeshProUGUI objects
         if (materialSettings.textMeshProUGUIObjects != null)
         {
             foreach (TextMeshProUGUI tmpUGUI in materialSettings.textMeshProUGUIObjects)
             {
                 if (tmpUGUI != null)
                 {
-                    tmpUGUI.color = materialSettings.textVertexColor; // Set vertex color for TextMeshProUGUI objects
+                    tmpUGUI.color = materialSettings.textVertexColor;
                 }
             }
+        }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        if (fadeMaterial != null && !isFading)
+        {
+            isFading = true;
+            float timer = 0f;
+            Color color = fadeMaterial.color;
+            color.a = 0f;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+                fadeMaterial.color = color;
+                yield return null;
+            }
+
+            color.a = 1f;
+            fadeMaterial.color = color;
+            isFading = false;
+        }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        if (fadeMaterial != null && !isFading)
+        {
+            isFading = true;
+            float timer = 0f;
+            Color color = fadeMaterial.color;
+            color.a = 1f;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                color.a = Mathf.Lerp(1f, 0f, timer / fadeDuration);
+                fadeMaterial.color = color;
+                yield return null;
+            }
+
+            color.a = 0f;
+            fadeMaterial.color = color;
+            isFading = false;
         }
     }
 }

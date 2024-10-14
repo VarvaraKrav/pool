@@ -44,6 +44,9 @@ public class LevelChunkSpawner : MonoBehaviour
         // Instantiate the LevelChunk at the given position and spawner's rotation
         GameObject spawnedLevelChunk = Instantiate(selectedLevelChunk, position, transform.rotation);
 
+        // Set the parent of the spawned chunk to this GameObject's transform
+        spawnedLevelChunk.transform.SetParent(transform);
+
         // Start moving the spawned LevelChunk
         spawnedLevelChunk.AddComponent<LevelChunkMover>().moveSpeed = moveSpeed;
     }
