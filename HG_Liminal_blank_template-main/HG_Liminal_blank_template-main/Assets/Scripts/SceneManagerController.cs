@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using TMPro;
+using Liminal.SDK.Core;
+using Liminal.Core.Fader;
 
 public class SceneManagerController : MonoBehaviour
 {
@@ -29,11 +31,11 @@ public class SceneManagerController : MonoBehaviour
     [System.Serializable]
     public class SceneSettings
     {
-        public GameObject scenePrefab; // Prefab to load for this scene
-        public float sceneDuration = 5f; // How long this scene will last
-        public Material skyboxMaterial; // Skybox for the scene
-        public Color ambientLightColor = Color.white; // Ambient lighting color for the scene
-        public Color fogColor = Color.gray; // Fog color for the scene
+        public GameObject scenePrefab;
+        public float sceneDuration = 5f;
+        public Material skyboxMaterial;
+        public Color ambientLightColor = Color.white;
+        public Color fogColor = Color.gray;
         public PointLightSettings pointLightSettings;
         public MaterialSettings materialSettings;
     }
@@ -41,6 +43,8 @@ public class SceneManagerController : MonoBehaviour
     public GameObject fadeObject;
     public float fadeDuration = 1f;
     public SceneSettings[] sceneSettings; // Array to manage scenes as prefabs
+    public GameObject finalScenePrefab; // Final scene prefab for application quit
+    public float finalSceneDuration = 5f; // Duration for the final scene
     public GameObject audioSwitchController;
     public GameObject experienceAppPlayer;
 
@@ -59,8 +63,38 @@ public class SceneManagerController : MonoBehaviour
             color.a = 0f;
             fadeMaterial.color = color;
         }
-        StartCoroutine(LoadNextScene());
+
+        // Load the first scene (Element 0) immediately and display it for its duration
+        StartCoroutine(LoadFirstScene());
     }
+
+    private IEnumerator LoadFirstScene()
+    {
+        // Ensure we load Element 0 of the sceneSettings array
+        if (sceneSettings.Length > 0)
+        {
+            // Load the first scene (Element 0)
+            SceneSettings firstScene = sceneSettings[0];
+
+            // Instantiate the first scene prefab
+            currentScenePrefab = Instantiate(firstScene.scenePrefab);
+
+            // Apply settings (Skybox, lighting, fog, etc.) for the first scene
+            ApplySceneSettings(firstScene);
+
+            // Fade in after the first scene is loaded
+            yield return StartCoroutine(FadeIn());
+
+            // Wait for the first scene's duration before moving to the next scene
+            yield return new WaitForSeconds(firstScene.sceneDuration);
+
+            // Start loading the next scenes after the first scene's duration
+            currentSceneIndex = 1;  // Set index to 1 to load the second scene next
+            StartCoroutine(LoadNextScene());
+        }
+    }
+
+
 
     private IEnumerator LoadNextScene()
     {
@@ -81,7 +115,36 @@ public class SceneManagerController : MonoBehaviour
 
             currentSceneIndex++;
         }
+
+        // Load final scene prefab
+        if (finalScenePrefab != null)
+        {
+            yield return StartCoroutine(FadeOut());
+
+            if (currentScenePrefab != null) Destroy(currentScenePrefab); // Destroy the last scene prefab
+            currentScenePrefab = Instantiate(finalScenePrefab); // Instantiate final scene prefab
+
+            ApplyFinalSceneSettings(); // Apply any settings you want for the final scene
+
+            yield return StartCoroutine(FadeIn());
+
+            yield return new WaitForSeconds(finalSceneDuration); // Wait for final scene duration
+
+            // Quit the application after the final scene
+            Debug.Log("Application Quit after Final Scene");
+            ExperienceApp.End();
+            var fader = ScreenFader.Instance;
+            fader.FadeToBlack();
+            StartCoroutine(DestroyCurrentScenePrefab());
+        }
     }
+    private IEnumerator DestroyCurrentScenePrefab()
+    {
+        yield return new WaitForSeconds(2); // Wait for 2 seconds
+        Destroy(currentScenePrefab); // Destroy the last scene prefab
+    }
+
+
 
     private void ApplySceneSettings(SceneSettings scene)
     {
@@ -106,6 +169,12 @@ public class SceneManagerController : MonoBehaviour
 
         // Apply material swaps and text changes
         SwapMaterials(scene.materialSettings);
+    }
+
+    private void ApplyFinalSceneSettings()
+    {
+        // You can add any specific logic for final scene settings here
+        // For example, a different Skybox, lighting, or effects.
     }
 
     private void SwapMaterials(MaterialSettings materialSettings)

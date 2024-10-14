@@ -456,7 +456,17 @@ PrefabInstance:
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -520,7 +530,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneSettings.Array.data[1].skyboxMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 8162517b6ec2309499f99e303b29f146, type: 2}
+      objectReference: {fileID: 2100000, guid: c1c961cbd00909b45b34d97fd7df5cbf, type: 2}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[2].skyboxMaterial
@@ -589,17 +599,17 @@ PrefabInstance:
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].fogColor.r
-      value: 0.0627451
+      value: 0.078281395
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].fogColor.g
-      value: 0.050980397
+      value: 0.06581523
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].fogColor.b
-      value: 0.24705884
+      value: 0.2735849
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -609,17 +619,17 @@ PrefabInstance:
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].ambientLightColor.r
-      value: 0.047058824
+      value: 0.07863118
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].ambientLightColor.g
-      value: 0.047058824
+      value: 0.14088914
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].ambientLightColor.b
-      value: 0.047058824
+      value: 0.2924528
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -656,6 +666,52 @@ PrefabInstance:
       propertyPath: sceneSettings.Array.data[2].fogColor.b
       value: 0.20754719
       objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[2].pointLightSettings.lightColor.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[2].pointLightSettings.lightColor.b
+      value: 0.9176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[2].pointLightSettings.lightColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[2].pointLightSettings.intensity
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].pointLightSettings.intensity
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].pointLightSettings.lightColor.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].pointLightSettings.lightColor.b
+      value: 0.9176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].pointLightSettings.lightColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalScenePrefab
+      value: 
+      objectReference: {fileID: 1258456574193442514, guid: b7054c2fbde723f4ea3431552ad95537,
+        type: 3}
     - target: {fileID: 384803004395184979, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: m_text

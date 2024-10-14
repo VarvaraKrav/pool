@@ -9991,6 +9991,8 @@ MonoBehaviour:
   fadeObject: {fileID: 870276824}
   fadeDuration: 1
   sceneSettings: []
+  finalScenePrefab: {fileID: 0}
+  finalSceneDuration: 5
   audioSwitchController: {fileID: 2821908403524908552}
   experienceAppPlayer: {fileID: 384803004500307794}
   carPointLight: {fileID: 384803004522746000}
