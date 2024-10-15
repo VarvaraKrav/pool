@@ -585,6 +585,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 384803005583824735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1621766282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 384803003848326589, guid: c0a81a82d6032f14495a5a598519dd77,
+    type: 3}
+  m_PrefabInstance: {fileID: 384803005583824735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1646998787 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 384803003817515682, guid: c0a81a82d6032f14495a5a598519dd77,
@@ -597,6 +603,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1687150100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 384803003754553672, guid: c0a81a82d6032f14495a5a598519dd77,
+    type: 3}
+  m_PrefabInstance: {fileID: 384803005583824735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1706107116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 384803004327232114, guid: c0a81a82d6032f14495a5a598519dd77,
@@ -669,6 +681,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManagerController
       objectReference: {fileID: 0}
+    - target: {fileID: 384803004395184979, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_text
+      value: Change Track
+      objectReference: {fileID: 0}
     - target: {fileID: 384803004255991940, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -737,12 +754,12 @@ PrefabInstance:
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.size
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.size
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -1601,10 +1618,205 @@ PrefabInstance:
       propertyPath: sceneSettings.Array.data[0].materialSettings.textMeshProUGUIObjects.Array.data[89]
       value: 
       objectReference: {fileID: 1383365144}
-    - target: {fileID: 384803004395184979, guid: c0a81a82d6032f14495a5a598519dd77,
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
-      propertyPath: m_text
-      value: Change Track
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[0].gameObject
+      value: 
+      objectReference: {fileID: 1513439960}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[0].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[1].gameObject
+      value: 
+      objectReference: {fileID: 588705444}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[1].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[2].gameObject
+      value: 
+      objectReference: {fileID: 476208006}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[2].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[3].gameObject
+      value: 
+      objectReference: {fileID: 1887083724}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[3].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[4].gameObject
+      value: 
+      objectReference: {fileID: 1887083724}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[4].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[5].gameObject
+      value: 
+      objectReference: {fileID: 556886783}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[5].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[6].gameObject
+      value: 
+      objectReference: {fileID: 1844439530}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[6].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[7].gameObject
+      value: 
+      objectReference: {fileID: 1512654944}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[7].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[8].gameObject
+      value: 
+      objectReference: {fileID: 1279253685}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[8].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[9].gameObject
+      value: 
+      objectReference: {fileID: 742784868}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[9].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b72d0e5a4394042a2e9a7166a6b4de, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[10].gameObject
+      value: 
+      objectReference: {fileID: 930325756}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[10].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[11].gameObject
+      value: 
+      objectReference: {fileID: 1621766282}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[11].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a69076979b5f68946b47332b2f17189a, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1646998787}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1813550487}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1304810611}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 2127465899}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 2130885282}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[5]
+      value: 
+      objectReference: {fileID: 881562456}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 1426959000}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 259153325}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textMeshProUGUIObjects.Array.data[8]
+      value: 
+      objectReference: {fileID: 1383365144}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[12].gameObject
+      value: 
+      objectReference: {fileID: 1061054308}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[12].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[13].gameObject
+      value: 
+      objectReference: {fileID: 1687150100}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.materialsToSwap.Array.data[13].newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1109bed039ca86e4ba91b57a2a3ca126, type: 2}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textVertexColor.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textVertexColor.b
+      value: 0.9176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].materialSettings.textVertexColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 384803004395184981, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -1670,5 +1882,15 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1047127076}
+    - target: {fileID: 384803005688321040, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803003754553672, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0a81a82d6032f14495a5a598519dd77, type: 3}
