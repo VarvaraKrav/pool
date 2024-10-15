@@ -16,7 +16,7 @@ RenderSettings:
   serializedVersion: 9
   m_Fog: 1
   m_FogColor: {r: 0.24528301, g: 0.0497508, b: 0.16200072, a: 1}
-  m_FogMode: 1
+  m_FogMode: 3
   m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -685,6 +685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Change Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803003754553672, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 384803004255991940, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -1818,6 +1823,56 @@ PrefabInstance:
       propertyPath: sceneSettings.Array.data[1].materialSettings.textVertexColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.sceneDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.ambientLightColor.r
+      value: 0.07863118
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.ambientLightColor.g
+      value: 0.14088914
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.ambientLightColor.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.ambientLightColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.fogColor.r
+      value: 0.078281395
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.fogColor.g
+      value: 0.06581523
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.fogColor.b
+      value: 0.2735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: finalSceneSettings.fogDensity
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 384803004255991941, guid: c0a81a82d6032f14495a5a598519dd77,
+        type: 3}
+      propertyPath: sceneSettings.Array.data[1].fogDensity
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 384803004395184981, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: m_IsActive
@@ -1870,7 +1925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 389349710, guid: c0a81a82d6032f14495a5a598519dd77, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 384803004034237317, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
@@ -1883,11 +1938,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1047127076}
     - target: {fileID: 384803005688321040, guid: c0a81a82d6032f14495a5a598519dd77,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 384803003754553672, guid: c0a81a82d6032f14495a5a598519dd77,
         type: 3}
       propertyPath: m_IsActive
       value: 1

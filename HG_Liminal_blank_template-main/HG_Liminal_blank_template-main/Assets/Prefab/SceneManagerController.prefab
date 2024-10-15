@@ -9997,6 +9997,7 @@ MonoBehaviour:
     skyboxMaterial: {fileID: 2100000, guid: 8162517b6ec2309499f99e303b29f146, type: 2}
     ambientLightColor: {r: 0.13333334, g: 0.039215688, b: 0.09411765, a: 0}
     fogColor: {r: 0.24528301, g: 0.0497508, b: 0.16200072, a: 1}
+    fogDensity: 0.01
     pointLightSettings:
       lightColor: {r: 0.8584906, g: 0.61957103, b: 0.6524413, a: 1}
       intensity: 1.5
@@ -10010,6 +10011,7 @@ MonoBehaviour:
     skyboxMaterial: {fileID: 2100000, guid: 493bfb50af5d9424da505ba945c86600, type: 2}
     ambientLightColor: {r: 0.07863118, g: 0.14088914, b: 0.2924528, a: 0}
     fogColor: {r: 0.078281395, g: 0.06581523, b: 0.2735849, a: 1}
+    fogDensity: 0.01
     pointLightSettings:
       lightColor: {r: 0, g: 0.59607846, b: 0.9176471, a: 1}
       intensity: 3.2
@@ -10051,6 +10053,20 @@ MonoBehaviour:
       - {fileID: 384803003835775137}
       - {fileID: 384803003892456154}
       textVertexColor: {r: 0, g: 0.59607846, b: 0.9176471, a: 1}
+  finalSceneSettings:
+    scenePrefab: {fileID: 0}
+    sceneDuration: 5
+    skyboxMaterial: {fileID: 0}
+    ambientLightColor: {r: 1, g: 1, b: 1, a: 1}
+    fogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    fogDensity: 0.01
+    pointLightSettings:
+      lightColor: {r: 1, g: 1, b: 1, a: 1}
+      intensity: 1
+    materialSettings:
+      materialsToSwap: []
+      textMeshProUGUIObjects: []
+      textVertexColor: {r: 1, g: 1, b: 1, a: 1}
   finalScenePrefab: {fileID: 1258456574193442514, guid: b7054c2fbde723f4ea3431552ad95537,
     type: 3}
   finalSceneDuration: 75

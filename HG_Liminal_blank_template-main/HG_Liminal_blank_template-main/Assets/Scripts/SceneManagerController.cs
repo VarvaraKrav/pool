@@ -36,6 +36,7 @@ public class SceneManagerController : MonoBehaviour
         public Material skyboxMaterial;
         public Color ambientLightColor = Color.white;
         public Color fogColor = Color.gray;
+        public float fogDensity = 0.01f; // Add fogDensity field
         public PointLightSettings pointLightSettings;
         public MaterialSettings materialSettings;
     }
@@ -43,6 +44,7 @@ public class SceneManagerController : MonoBehaviour
     public GameObject fadeObject;
     public float fadeDuration = 1f;
     public SceneSettings[] sceneSettings; // Array to manage scenes as prefabs
+    public SceneSettings finalSceneSettings; // Add a SceneSettings object for the final scene
     public GameObject finalScenePrefab; // Final scene prefab for application quit
     public float finalSceneDuration = 5f; // Duration for the final scene
     public GameObject audioSwitchController;
@@ -194,34 +196,47 @@ public class SceneManagerController : MonoBehaviour
 
     private void ApplySceneSettings(SceneSettings scene)
     {
-        // Apply Skybox material
         if (scene.skyboxMaterial != null)
         {
             RenderSettings.skybox = scene.skyboxMaterial;
         }
 
-        // Apply ambient light
         RenderSettings.ambientLight = scene.ambientLightColor;
-
-        // Apply fog color
         RenderSettings.fogColor = scene.fogColor;
+        RenderSettings.fogDensity = scene.fogDensity; // Apply fog density
 
-        // Apply point light settings
         if (carPointLight != null)
         {
             carPointLight.color = scene.pointLightSettings.lightColor;
             carPointLight.intensity = scene.pointLightSettings.intensity;
         }
 
-        // Apply material swaps and text changes
         SwapMaterials(scene.materialSettings);
     }
 
     private void ApplyFinalSceneSettings()
     {
-        // You can add any specific logic for final scene settings here
-        // For example, a different Skybox, lighting, or effects.
+        if (finalSceneSettings != null)
+        {
+            if (finalSceneSettings.skyboxMaterial != null)
+            {
+                RenderSettings.skybox = finalSceneSettings.skyboxMaterial;
+            }
+
+            RenderSettings.ambientLight = finalSceneSettings.ambientLightColor;
+            RenderSettings.fogColor = finalSceneSettings.fogColor;
+            RenderSettings.fogDensity = finalSceneSettings.fogDensity;
+
+            if (carPointLight != null)
+            {
+                carPointLight.color = finalSceneSettings.pointLightSettings.lightColor;
+                carPointLight.intensity = finalSceneSettings.pointLightSettings.intensity;
+            }
+
+            SwapMaterials(finalSceneSettings.materialSettings);
+        }
     }
+
 
     private void SwapMaterials(MaterialSettings materialSettings)
     {
