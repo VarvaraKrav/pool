@@ -60,7 +60,9 @@ public class SceneManagerController : MonoBehaviour
     private int currentSceneIndex = 0;
     private GameObject currentScenePrefab;
     private GameObject portalFXInstance; // Reference to the instantiated portalFX
-    private AudioSource audioSource; // Reference to the AudioSource component
+    public AudioSource audioControllerAudioSource; // Reference to the Audio Controller AudioSource component
+    public AudioSource sceneManagerAudioSource; // Reference to the UI Manager AudioSource component
+    public AudioClip buttonClickSound; // Clip to play when buttons are clicked
 
     private void Start()
     {
@@ -75,7 +77,7 @@ public class SceneManagerController : MonoBehaviour
         // Get the AudioSource from the audioSwitchController
         if (audioSwitchController != null)
         {
-            audioSource = audioSwitchController.GetComponent<AudioSource>();
+            audioControllerAudioSource = audioSwitchController.GetComponent<AudioSource>();
         }
 
         // Load the menu scene first
@@ -151,6 +153,7 @@ public class SceneManagerController : MonoBehaviour
     // New Functions to set scene and final scene durations, and load the next scene with fade
     public void SetDuration3Minutes()
     {
+        PlayButtonClickSound();
         // Set to 3 minutes (180 seconds)
         finalSceneDuration = 75f;
         if (sceneSettings.Length > 0)
@@ -162,7 +165,10 @@ public class SceneManagerController : MonoBehaviour
         // Set prompt delays for 3 minutes
         if (uiManager != null)
         {
-            uiManager.promptDelays = new float[] { 5f, 10f, 15f }; // Example delay times for 3 minutes
+            uiManager.promptDelays = new float[] { 75f, 110f}; // Example delay times for 3 minutes
+
+            // Activate the UIManager
+            uiManager.gameObject.SetActive(true);
         }
 
         // Start the transition to the next scene
@@ -171,6 +177,7 @@ public class SceneManagerController : MonoBehaviour
 
     public void SetDuration5Minutes()
     {
+        PlayButtonClickSound();
         // Set to 5 minutes (300 seconds)
         finalSceneDuration = 132f;
         if (sceneSettings.Length > 0)
@@ -182,7 +189,10 @@ public class SceneManagerController : MonoBehaviour
         // Set prompt delays for 5 minutes
         if (uiManager != null)
         {
-            uiManager.promptDelays = new float[] { 10f, 20f, 30f }; // Example delay times for 5 minutes
+            uiManager.promptDelays = new float[] { 132f, 167f }; // Example delay times for 5 minutes
+
+            // Activate the UIManager
+            uiManager.gameObject.SetActive(true);
         }
 
         // Start the transition to the next scene
@@ -191,6 +201,7 @@ public class SceneManagerController : MonoBehaviour
 
     public void SetDuration10Minutes()
     {
+        PlayButtonClickSound();
         // Set to 10 minutes (600 seconds)
         finalSceneDuration = 282f;
         if (sceneSettings.Length > 0)
@@ -202,11 +213,23 @@ public class SceneManagerController : MonoBehaviour
         // Set prompt delays for 10 minutes
         if (uiManager != null)
         {
-            uiManager.promptDelays = new float[] { 15f, 30f, 45f }; // Example delay times for 10 minutes
+            uiManager.promptDelays = new float[] { 282f, 317f }; // Example delay times for 10 minutes
+
+            // Activate the UIManager
+            uiManager.gameObject.SetActive(true);
         }
 
         // Start the transition to the next scene
         StartCoroutine(FadeOutAndLoadNextScene());
+    }
+
+    // Helper function to play button click sound
+    private void PlayButtonClickSound()
+    {
+        if (sceneManagerAudioSource != null && buttonClickSound != null)
+        {
+            sceneManagerAudioSource.PlayOneShot(buttonClickSound);
+        }
     }
 
     // Coroutine for fading out, loading the next scene, and fading back in
@@ -310,6 +333,7 @@ public class SceneManagerController : MonoBehaviour
 
             // If Liminal Experience App, end scene here.
             ExperienceApp.End();
+            audioControllerAudioSource.Stop();
 
         }
     }
@@ -320,9 +344,9 @@ public class SceneManagerController : MonoBehaviour
         yield return new WaitForSeconds(2); // Wait for 2 seconds
         Destroy(currentScenePrefab); // Destroy the last scene prefab
                                      // Stop the AudioSource when ExperienceApp.End() is called
-        if (audioSource != null)
+        if (audioControllerAudioSource != null)
         {
-            audioSource.Stop();
+            audioControllerAudioSource.Stop();
         }
     }
 
