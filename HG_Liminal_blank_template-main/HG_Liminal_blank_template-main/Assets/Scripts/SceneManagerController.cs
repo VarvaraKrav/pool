@@ -41,6 +41,7 @@ public class SceneManagerController : MonoBehaviour
         public MaterialSettings materialSettings;
     }
 
+    public UIManager uiManager; // Reference to UIManager
     public GameObject fadeObject;
     public float fadeDuration = 1f;
     public SceneSettings[] sceneSettings; // Array to manage scenes as prefabs
@@ -50,6 +51,8 @@ public class SceneManagerController : MonoBehaviour
     public GameObject audioSwitchController;
     public GameObject experienceAppPlayer;
     public GameObject portalFXPrefab; // Add a reference to the portalFX prefab
+    public GameObject menuPrefab; // Add a reference to the Menu prefab
+    public GameObject carGameObject; // Reference to the Car GameObject
 
     public Light carPointLight;
     private Material fadeMaterial;
@@ -75,8 +78,48 @@ public class SceneManagerController : MonoBehaviour
             audioSource = audioSwitchController.GetComponent<AudioSource>();
         }
 
-        // Load the first scene (Element 0) immediately and display it for its duration
-        StartCoroutine(LoadFirstScene());
+        // Load the menu scene first
+        StartCoroutine(LoadMenuScene());
+    }
+
+    private IEnumerator LoadMenuScene()
+    {
+        // Ensure we are using the already-existing Menu GameObject in the scene
+        if (menuPrefab != null)
+        {
+            // No need to instantiate the menuPrefab, use the existing menuGameObject instead
+
+            // Turn off the Car GameObject
+            if (carGameObject != null)
+            {
+                carGameObject.SetActive(false);
+            }
+
+            // Fade in after the menu is loaded
+            yield return StartCoroutine(FadeIn());
+
+            // Wait for user input or specific duration (can be modified here)
+            // Example: Wait for a button click (you need to handle this elsewhere in your UI)
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space)); // Placeholder for user input
+
+            // Fade out when leaving the menu
+            yield return StartCoroutine(FadeOut());
+
+            // Deactivate the Menu GameObject instead of destroying it
+            if (menuPrefab != null)
+            {
+                menuPrefab.SetActive(false); // Deactivate the existing Menu GameObject
+            }
+
+            // Turn the Car GameObject back on when leaving the menu
+            if (carGameObject != null)
+            {
+                carGameObject.SetActive(true);
+            }
+
+            // Start loading the first scene
+            StartCoroutine(LoadFirstScene());
+        }
     }
 
     private IEnumerator LoadFirstScene()
@@ -104,6 +147,93 @@ public class SceneManagerController : MonoBehaviour
             StartCoroutine(LoadNextScene());
         }
     }
+
+    // New Functions to set scene and final scene durations, and load the next scene with fade
+    public void SetDuration3Minutes()
+    {
+        // Set to 3 minutes (180 seconds)
+        finalSceneDuration = 75f;
+        if (sceneSettings.Length > 0)
+        {
+            sceneSettings[0].sceneDuration = 75f;
+        }
+        Debug.Log("Set duration to 3 minutes.");
+
+        // Set prompt delays for 3 minutes
+        if (uiManager != null)
+        {
+            uiManager.promptDelays = new float[] { 5f, 10f, 15f }; // Example delay times for 3 minutes
+        }
+
+        // Start the transition to the next scene
+        StartCoroutine(FadeOutAndLoadNextScene());
+    }
+
+    public void SetDuration5Minutes()
+    {
+        // Set to 5 minutes (300 seconds)
+        finalSceneDuration = 132f;
+        if (sceneSettings.Length > 0)
+        {
+            sceneSettings[0].sceneDuration = 132f;
+        }
+        Debug.Log("Set duration to 5 minutes.");
+
+        // Set prompt delays for 5 minutes
+        if (uiManager != null)
+        {
+            uiManager.promptDelays = new float[] { 10f, 20f, 30f }; // Example delay times for 5 minutes
+        }
+
+        // Start the transition to the next scene
+        StartCoroutine(FadeOutAndLoadNextScene());
+    }
+
+    public void SetDuration10Minutes()
+    {
+        // Set to 10 minutes (600 seconds)
+        finalSceneDuration = 282f;
+        if (sceneSettings.Length > 0)
+        {
+            sceneSettings[0].sceneDuration = 282f;
+        }
+        Debug.Log("Set duration to 10 minutes.");
+
+        // Set prompt delays for 10 minutes
+        if (uiManager != null)
+        {
+            uiManager.promptDelays = new float[] { 15f, 30f, 45f }; // Example delay times for 10 minutes
+        }
+
+        // Start the transition to the next scene
+        StartCoroutine(FadeOutAndLoadNextScene());
+    }
+
+    // Coroutine for fading out, loading the next scene, and fading back in
+    private IEnumerator FadeOutAndLoadNextScene()
+    {
+        // Start the fade-out
+        yield return StartCoroutine(FadeOut());
+
+        // Turn off the Menu GameObject (Deactivate it)
+        if (menuPrefab != null)
+        {
+            menuPrefab.SetActive(false); // Deactivate the existing Menu GameObject in the scene
+        }
+
+        // Turn the Car GameObject back on when leaving the menu
+        if (carGameObject != null)
+        {
+            carGameObject.SetActive(true);
+        }
+
+        // Load the first scene
+        StartCoroutine(LoadFirstScene());
+
+        // Start the fade-in after loading the scene
+        yield return StartCoroutine(FadeIn());
+    }
+
 
     private IEnumerator LoadNextScene()
     {
@@ -171,17 +301,19 @@ public class SceneManagerController : MonoBehaviour
             // Wait for 5 seconds before starting fade out
             yield return new WaitForSeconds(5f);
 
+            // Fade out and load the Menu scene again instead of quitting
+            yield return StartCoroutine(FadeOut());
 
-            // Quit the application after the final scene
-            Debug.Log("Application Quit after Final Scene");
+            // Destroy both the current scene prefab and the portalFXInstance
+            if (currentScenePrefab != null) Destroy(currentScenePrefab); // Destroy the previous scene prefab
+            if (portalFXInstance != null) Destroy(portalFXInstance); // Destroy the portalFX
+
+            // If Liminal Experience App, end scene here.
             ExperienceApp.End();
-            var fader = ScreenFader.Instance;
-            fader.FadeToBlack();
-            StartCoroutine(DestroyCurrentScenePrefab());
-
 
         }
     }
+
 
     private IEnumerator DestroyCurrentScenePrefab()
     {
