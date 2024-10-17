@@ -42,8 +42,8 @@ public class AudioSwitchController : MonoBehaviour
                 worldSpaceUI.SetActive(true);
             }
 
-            // Check for trigger input or left mouse click
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0))
+            // Check for input from either the primary or secondary index trigger on both hands
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0))
             {
                 SwitchAudioClip();
             }
