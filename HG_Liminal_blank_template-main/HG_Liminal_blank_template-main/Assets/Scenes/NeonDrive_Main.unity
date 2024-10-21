@@ -405,6 +405,81 @@ PrefabInstance:
       propertyPath: fadeDuration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6372759343297365743, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_FadeOut.m_Duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759344211095093, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759344240359320, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121412139363289634, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759343359954297, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712490522434815319, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625661661215297435, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444783682774484471, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820910872266392627, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759344032664251, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759343269228634, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759343269228632, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759342373202332, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759342763172539, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795213606636380074, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: autoplay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3503264037272208696, guid: ef8f6f7d71868db47a2be6cae8eca243,
         type: 3}
       propertyPath: audioClips.Array.size

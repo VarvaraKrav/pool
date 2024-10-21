@@ -390,13 +390,13 @@ MonoBehaviour:
   m_margin: {x: 1.3018701, y: -0.005750965, z: -0.38630652, w: 0.5911011}
   m_textInfo:
     textComponent: {fileID: 5920702777859376052}
-    characterCount: 0
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -525,15 +525,12 @@ MonoBehaviour:
   - {fileID: 6819593474773656579}
   - {fileID: 0}
   audioClips:
-  - {fileID: 8300000, guid: d1384e5cb08164147b64c16b527de7ba, type: 3}
   - {fileID: 8300000, guid: dcb72cafdd9606a408a4e358673814be, type: 3}
   audioSource: {fileID: 4813707980833224638}
   displayDurations:
-  - 5
   - 9
   promptDelays:
   - 75
-  - 110
 --- !u!82 &4813707980833224638
 AudioSource:
   m_ObjectHideFlags: 0
@@ -844,13 +841,13 @@ MonoBehaviour:
   m_margin: {x: 1.3018701, y: -0.005750965, z: -0.38630652, w: 0.5911011}
   m_textInfo:
     textComponent: {fileID: 3335608386760796105}
-    characterCount: 0
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -3929,13 +3926,13 @@ MonoBehaviour:
   m_margin: {x: -45.775993, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759342500595642}
-    characterCount: 0
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -8068,7 +8065,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6372759343269228634}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51dfc9a21fea473499e9c7b067ad3318, type: 3}
   m_Name: 
@@ -9800,13 +9797,13 @@ MonoBehaviour:
   m_margin: {x: -45.775993, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759343478055159}
-    characterCount: 0
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -11202,13 +11199,13 @@ MonoBehaviour:
   m_margin: {x: 1.3018701, y: -0.005750965, z: -0.38630652, w: 0.5911011}
   m_textInfo:
     textComponent: {fileID: 6372759343682447031}
-    characterCount: 0
+    characterCount: 23
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 3
+    wordCount: 3
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -11838,7 +11835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeMaterial: {fileID: 2100000, guid: 966128d3cfc47254d9c92bfeebf89a54, type: 2}
-  fadeDuration: 1
+  fadeDuration: 2
   gameDuration: 10
   timeRemaining: 0
   menuScene: {fileID: 0}
@@ -11846,7 +11843,7 @@ MonoBehaviour:
   audioSource: {fileID: 4094493980071023133}
   buttonClickSound: {fileID: 8300000, guid: d3ea165eaa2dde14586004b6faaf2698, type: 3}
   carGameObject: {fileID: 3121412139363289634}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 3503264037272208696}
 --- !u!82 &4094493980071023133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12397,13 +12394,13 @@ MonoBehaviour:
   m_margin: {x: 63.88139, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759343904306042}
-    characterCount: 0
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -12722,13 +12719,13 @@ MonoBehaviour:
   m_margin: {x: -45.775993, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759343960854785}
-    characterCount: 0
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -19137,13 +19134,13 @@ MonoBehaviour:
   m_margin: {x: -45.775993, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759344200043886}
-    characterCount: 0
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -19266,7 +19263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6372759344211095091
 Transform:
   m_ObjectHideFlags: 0
@@ -19454,7 +19451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6372759344240359318
 Transform:
   m_ObjectHideFlags: 0
@@ -19636,13 +19633,13 @@ MonoBehaviour:
   m_margin: {x: -45.775993, y: -20.648987, z: 80.2834, w: 5.7488284}
   m_textInfo:
     textComponent: {fileID: 6372759344248730370}
-    characterCount: 0
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -21083,13 +21080,13 @@ MonoBehaviour:
   m_margin: {x: 1.3018701, y: -0.005750965, z: -0.38630652, w: 0.5911011}
   m_textInfo:
     textComponent: {fileID: 6712490522516252912}
-    characterCount: 0
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -21667,13 +21664,13 @@ MonoBehaviour:
   m_margin: {x: 1.3018701, y: -0.005750965, z: -0.38630652, w: 0.5911011}
   m_textInfo:
     textComponent: {fileID: 6920712045877527236}
-    characterCount: 0
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -22670,30 +22667,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1022743
       objectReference: {fileID: 0}
-    - target: {fileID: -5178661895559278292, guid: 3928783f0abf8304281bcf13b65f087a,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2338341269213401056, guid: 00b4a9d1b5d24e243b5a88ba87bfd7b6,
-        type: 3}
-    - target: {fileID: -1504981713932161579, guid: 3928783f0abf8304281bcf13b65f087a,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: 3928783f0abf8304281bcf13b65f087a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1e8cc5a24bb3a5f469c57c288120e179, type: 2}
     - target: {fileID: -1504981713932161579, guid: 3928783f0abf8304281bcf13b65f087a,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5178661895559278292, guid: 3928783f0abf8304281bcf13b65f087a, type: 3}
-    - {fileID: -1504981713932161579, guid: 3928783f0abf8304281bcf13b65f087a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3928783f0abf8304281bcf13b65f087a, type: 3}
 --- !u!4 &2092522452264532017 stripped
 Transform:
@@ -22722,12 +22701,12 @@ PrefabInstance:
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: audioClips.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: audioClipNames.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
@@ -22753,17 +22732,57 @@ PrefabInstance:
         type: 3}
       propertyPath: audioClips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 05665f7a4be5e8b4fb2a55194185ba29, type: 3}
+      objectReference: {fileID: 8300000, guid: fae13a61c2f5fe54bb375ec21d21e887, type: 3}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: audioClipNames.Array.data[3]
-      value: Hackers
+      value: Blue Moon
       objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: outlineScript
       value: 
       objectReference: {fileID: 6372759343278676528}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: autoplay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 79078bb9275f81d49b84650c7fec7f6c, type: 3}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClipNames.Array.data[1]
+      value: Last Stop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05665f7a4be5e8b4fb2a55194185ba29, type: 3}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fae13a61c2f5fe54bb375ec21d21e887, type: 3}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClipNames.Array.data[2]
+      value: Blue Moon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c0926799ca39fe049bbba6196e2195a8, type: 3}
+    - target: {fileID: 2485554847277521193, guid: 471b4fee2aaa1614ab123b3a6057241c,
+        type: 3}
+      propertyPath: audioClipNames.Array.data[0]
+      value: Arcadia
+      objectReference: {fileID: 0}
     - target: {fileID: 2485554847277521192, guid: 471b4fee2aaa1614ab123b3a6057241c,
         type: 3}
       propertyPath: m_LocalPosition.x

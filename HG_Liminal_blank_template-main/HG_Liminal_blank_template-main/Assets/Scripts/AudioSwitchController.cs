@@ -13,16 +13,29 @@ public class AudioSwitchController : MonoBehaviour
     public string[] audioClipNames; // Array of names corresponding to each audio clip
     public Outline outlineScript; // Reference to the outline script
 
+    public bool autoplay = false; // Toggle for autoplay mode in the Inspector
     private int currentClipIndex = 0;
     private GameObject currentSwitchObject;
 
     void Start()
     {
         UpdateUI(); // Initialize the UI with the first clip name
+        audioSource.loop = false; // Ensure the clip doesn't loop
+        audioSource.clip = audioClips[currentClipIndex]; // Set the initial audio clip
+        audioSource.Play(); // Start playing the first clip
+
+        // Subscribe to the audio source's clip end event
+        audioSource.Play();
     }
 
     void Update()
     {
+        // Autoplay mode - check if the current audio clip has finished playing
+        if (autoplay && !audioSource.isPlaying)
+        {
+            PlayNextClip();
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(controllerTransform.position, controllerTransform.forward, out hit, Mathf.Infinity, audioSwitchLayer))
         {
@@ -66,6 +79,11 @@ public class AudioSwitchController : MonoBehaviour
     }
 
     void SwitchAudioClip()
+    {
+        PlayNextClip();
+    }
+
+    void PlayNextClip()
     {
         if (audioClips.Length > 0)
         {
