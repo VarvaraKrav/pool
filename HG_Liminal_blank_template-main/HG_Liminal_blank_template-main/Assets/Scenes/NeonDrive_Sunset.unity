@@ -2457,6 +2457,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274563424}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &288020965 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3181336608618220226, guid: 735332d38bf608e449d3d1704efd6e37,
+    type: 3}
+  m_PrefabInstance: {fileID: 16145897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &295290760
 GameObject:
   m_ObjectHideFlags: 0
@@ -4921,9 +4927,7 @@ MonoBehaviour:
   leftController: {fileID: 1559437128}
   rightController: {fileID: 1005724381}
   gearShifter: {fileID: 1849815573}
-  outlineScript: {fileID: 0}
-  pPositionLocal: {x: -10.03802, y: 2.101578, z: 0.1052}
-  rPositionLocal: {x: -10.03802, y: 2.101578, z: 0.0712}
+  outlineScript: {fileID: 1849815576}
   dPositionLocal: {x: -10.03802, y: 2.101578, z: 0.0034}
   sPositionLocal: {x: -10.03802, y: 2.101578, z: -0.0301}
   transitionSpeed: 1
@@ -5000,12 +5004,6 @@ MonoBehaviour:
   minGlowScale: {x: 0, y: 0, z: 0}
   maxGlowScale: {x: 0.2, y: 0.4, z: 0.2}
   raycastDistance: 10
---- !u!4 &875233187 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3181336608335167054, guid: 735332d38bf608e449d3d1704efd6e37,
-    type: 3}
-  m_PrefabInstance: {fileID: 16145897}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &875614685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3770708068272807015, guid: 68835618cfefd13418d5d200efc8146d,
@@ -8347,7 +8345,7 @@ MonoBehaviour:
   leftController: {fileID: 1559437128}
   rightController: {fileID: 1005724381}
   leftWindow: {fileID: 1376963050}
-  rightWindow: {fileID: 875233187}
+  rightWindow: {fileID: 288020965}
   leftWindowUpButton: {fileID: 2111097192}
   leftWindowDownButton: {fileID: 9580201}
   rightWindowUpButton: {fileID: 1348225025}
@@ -9171,6 +9169,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 16145897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1849815576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3181336608840375882, guid: 735332d38bf608e449d3d1704efd6e37,
+    type: 3}
+  m_PrefabInstance: {fileID: 16145897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849815573}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857007370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,7 +10371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9139de70eb7054142af03ef08edce37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerTransform: {fileID: 0}
+  controllerTransform: {fileID: 1559437128}
   audioSwitchLayer:
     serializedVersion: 2
     m_Bits: 256
