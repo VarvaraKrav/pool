@@ -127,6 +127,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1049537114}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &585066534 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6786979956011692598, guid: 87f396e94a9623843b3fda3b90156b84,
+    type: 3}
+  m_PrefabInstance: {fileID: 1049537114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1024574902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NeonDrive_Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376194785903781041, guid: 34405f75c3dcb504f94f605aa0ca52e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 308793887952955555, guid: 34405f75c3dcb504f94f605aa0ca52e1,
         type: 3}
@@ -241,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 4183008983781499003, guid: 87f396e94a9623843b3fda3b90156b84,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6786979956011692598, guid: 87f396e94a9623843b3fda3b90156b84,
         type: 3}
@@ -336,6 +347,78 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6372759342481374975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1967311593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967311594}
+  - component: {fileID: 1967311595}
+  m_Layer: 0
+  m_Name: NVBoids Bird
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1967311594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967311593}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -322.27295, y: 14.605286, z: 521.6089}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 585066534}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967311595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967311593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behavioralCh: {x: 3, y: 7}
+  debug: 0
+  flockNum: 8
+  fragmentedFlock: 800
+  fragmentedFlockYLimit: 0.2
+  migrationFrequency: 0.015
+  posChangeFrequency: 0.2
+  smoothChFrequency: 20
+  birdPref: {fileID: 7623336724680058607, guid: 2f5f5731eb36efb4ead612880acc102e,
+    type: 3}
+  birdsNum: 2000
+  birdSpeed: 1
+  fragmentedBirds: 23
+  fragmentedBirdsYLimit: 0.9
+  soaring: 0.45
+  verticalWawe: 15
+  rotationClamp: 0
+  rotationClampValue: 50
+  scaleRandom: {x: 1, y: 1.5}
+  danger: 0
+  dangerRadius: 15
+  dangerSpeed: 1.5
+  dangerSoaring: 0.5
+  dangerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  HelpURL: nvjob.github.io/unity/nvjob-boids
+  ReportAProblem: nvjob.github.io/support
+  Patrons: nvjob.github.io/patrons
 --- !u!1 &2070729851
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +707,36 @@ PrefabInstance:
         type: 3}
       propertyPath: displayDurations.Array.data[0]
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121412139363289634, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820910872266392627, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444783682774484471, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625661661215297435, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372759343359954297, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712490522434815319, guid: ef8f6f7d71868db47a2be6cae8eca243,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8f6f7d71868db47a2be6cae8eca243, type: 3}
