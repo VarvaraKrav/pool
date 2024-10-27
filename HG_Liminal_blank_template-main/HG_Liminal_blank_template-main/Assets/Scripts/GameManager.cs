@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject menuScene;
     public GameObject gameScene;
+    public GameObject carGroup;
+
 
     [Header("VR Hands")]
     public GameObject vrLeftHand;  // Reference to the VR Left Hand GameObject
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip buttonClickSound;
 
-    public GameObject carGameObject;
+    //public GameObject carGameObject;
     public UIManager uiManager;
 
     private void Start()
@@ -37,9 +39,22 @@ public class GameManager : MonoBehaviour
         menuScene.SetActive(true);
         gameScene.SetActive(false);
 
-        if (carGameObject != null)
+        
+
+        if (carGroup == null)
         {
-            carGameObject.SetActive(false);
+            // Attempt to find CarGroup by name if not assigned in Inspector
+            carGroup = GameObject.Find("carGroup");  // Make sure the name matches exactly
+        }
+
+        if (carGroup != null)
+        {
+            carGroup.SetActive(false);  // Disable CarGroup
+            Debug.Log("CarGroup SetActive = False.");
+        }
+        else
+        {
+            Debug.LogError("CarGroup is not assigned and could not be found!");
         }
     }
 
@@ -72,9 +87,10 @@ public class GameManager : MonoBehaviour
         gameScene.SetActive(true);
         gameStarted = true;
 
-        if (carGameObject != null)
+        if (carGroup != null)
         {
-            carGameObject.SetActive(true);
+            carGroup.SetActive(true);
+            Debug.Log("carGroup SetActive = True");
         }
 
         // Destroy the VR hands when starting the game
@@ -98,9 +114,9 @@ public class GameManager : MonoBehaviour
         gameScene.SetActive(false);
         menuScene.SetActive(true);
 
-        if (carGameObject != null)
+        if (carGroup != null)
         {
-            carGameObject.SetActive(false);
+            carGroup.SetActive(false);
         }
 
         yield return StartCoroutine(FadeIn());
@@ -134,7 +150,7 @@ public class GameManager : MonoBehaviour
         if (fadeMaterial != null && !isFading)
         {
             isFading = true;
-            float timer = 0f;
+            float timer = 20f;
             Color color = fadeMaterial.color;
             color.a = 1f;
 

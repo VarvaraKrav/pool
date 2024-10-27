@@ -33,7 +33,10 @@ public class AudioSwitchController : MonoBehaviour
         // Autoplay mode - check if the current audio clip has finished playing
         if (autoplay && !audioSource.isPlaying)
         {
+            
             PlayNextClip();
+            UpdateUI();
+
         }
 
         RaycastHit hit;
