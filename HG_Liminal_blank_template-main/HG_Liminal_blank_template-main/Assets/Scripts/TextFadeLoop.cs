@@ -24,7 +24,7 @@ public class TextFadeLoop : MonoBehaviour
         textElement.fontMaterial = textMaterial;  // Assign the new material to the text element
 
         // Set up the spotlight
-        if (spotlight == null)
+       /* if (spotlight == null)
         {
             GameObject lightObj = new GameObject("Text Spotlight");
             spotlight = lightObj.AddComponent<Light>();
@@ -41,7 +41,8 @@ public class TextFadeLoop : MonoBehaviour
             // Position the spotlight slightly in front of the text
             lightObj.transform.localPosition = new Vector3(0.84f, 0.18f, -0.422f);
         }
-
+       */
+       
         // Store the original intensity of the spotlight
         originalIntensity = spotlight.intensity * glowMultiplier;
 
