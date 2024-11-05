@@ -6,7 +6,7 @@ public class TextFadeLoop : MonoBehaviour
 {
     public TextMeshProUGUI textElement;  // The TextMeshPro UI element
     public float fadeDuration = 1.0f;    // Time it takes to fade in or out
-    public Light spotlight;              // The spotlight to sync with the text fade
+    //public Light spotlight;              // The spotlight to sync with the text fade
     public float glowMultiplier = 1.0f;
 
 
@@ -44,7 +44,7 @@ public class TextFadeLoop : MonoBehaviour
        */
        
         // Store the original intensity of the spotlight
-        originalIntensity = spotlight.intensity * glowMultiplier;
+        //originalIntensity = spotlight.intensity * glowMultiplier;
 
         // Start the fade-out loop
         StartCoroutine(FadeOut());
@@ -66,7 +66,7 @@ public class TextFadeLoop : MonoBehaviour
             textMaterial.SetFloat(ShaderUtilities.ID_GlowPower, alpha * glowMultiplier);  // Adjust multiplier as needed
 
             // Adjust spotlight intensity based on alpha
-            spotlight.intensity = originalIntensity * alpha;
+            //spotlight.intensity = originalIntensity * alpha;
 
             yield return null;  // Wait for the next frame
         }
@@ -90,7 +90,7 @@ public class TextFadeLoop : MonoBehaviour
             textMaterial.SetFloat(ShaderUtilities.ID_GlowPower, alpha * glowMultiplier);  // Adjust multiplier as needed
 
             // Adjust spotlight intensity based on alpha
-            spotlight.intensity = originalIntensity * alpha;
+            //spotlight.intensity = originalIntensity * alpha;
 
             yield return null;  // Wait for the next frame
         }
