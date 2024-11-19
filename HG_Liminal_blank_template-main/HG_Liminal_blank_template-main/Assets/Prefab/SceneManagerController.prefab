@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textElement: {fileID: 389349712}
   fadeDuration: 1
+  glowMultiplier: 1
 --- !u!1 &739486965
 GameObject:
   m_ObjectHideFlags: 0
@@ -19941,6 +19942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textElement: {fileID: 4408109657474263908}
   fadeDuration: 1
+  glowMultiplier: 1
 --- !u!1 &3461984400500473786
 GameObject:
   m_ObjectHideFlags: 0
@@ -20344,6 +20346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textElement: {fileID: 8317577553250618985}
   fadeDuration: 1
+  glowMultiplier: 1
 --- !u!1 &4944847728549900486
 GameObject:
   m_ObjectHideFlags: 0
@@ -20748,6 +20751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textElement: {fileID: 1084524589864643092}
   fadeDuration: 1
+  glowMultiplier: 1
 --- !u!114 &384803004393794689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22689,12 +22693,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -5178661895559278292, guid: 3928783f0abf8304281bcf13b65f087a,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2338341269213401056, guid: 00b4a9d1b5d24e243b5a88ba87bfd7b6,
-        type: 3}
     - target: {fileID: -4216859302048453862, guid: 3928783f0abf8304281bcf13b65f087a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22765,6 +22763,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1022743
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 3928783f0abf8304281bcf13b65f087a,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2338341269213401056, guid: 00b4a9d1b5d24e243b5a88ba87bfd7b6,
+        type: 3}
     - target: {fileID: -1504981713932161579, guid: 3928783f0abf8304281bcf13b65f087a,
         type: 3}
       propertyPath: m_Materials.Array.size
